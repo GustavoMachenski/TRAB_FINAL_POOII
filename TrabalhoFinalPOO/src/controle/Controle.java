@@ -13,6 +13,7 @@ import modelo.Administrador;
 import modelo.Usuario;
 import visao.GeradorDeTelas;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -192,6 +193,17 @@ public class Controle {
         } catch (PersistenceException ex) {
             Logger.getLogger(Controle.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    public List<Artista> buscarListaDeArtistas() {
+        try {
+            ArtistaDAO artistaDAO = new ArtistaDAO();
+            List<Artista> listaArtistas = artistaDAO.consultarTodos();
+            return listaArtistas;
+        } catch (PersistenceException ex) {
+            Logger.getLogger(Controle.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
 }

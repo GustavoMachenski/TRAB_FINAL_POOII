@@ -103,7 +103,7 @@ public class ArtistaDAO implements IArtistaDAO{
             PreparedStatement ps = con.prepareStatement("SELECT idartista, nome, generoprincipal FROM artista");
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                Artista a = new Artista(rs.getInt("id"), rs.getString("nome"), rs.getString("generoprincipal"));
+                Artista a = new Artista(rs.getInt("idartista"), rs.getString("nome"), rs.getString("generoprincipal"));
                 artistas.add(a);
             }
             rs.close();
@@ -111,7 +111,9 @@ public class ArtistaDAO implements IArtistaDAO{
             con.close();
             return artistas;
         } catch (SQLException ex) {
+            System.out.println(ex);
             throw new PersistenceException("Banco de dados inacessível");
+            
         }
     }
 }
