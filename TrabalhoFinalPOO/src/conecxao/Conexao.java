@@ -11,7 +11,7 @@ public class Conexao {
             Class.forName("com.mysql.cj.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/poo_spotify";
             String usuario = "root";
-            String senha = "mysql";
+            String senha = "";
             
             return DriverManager.getConnection(url, usuario, senha);
             
