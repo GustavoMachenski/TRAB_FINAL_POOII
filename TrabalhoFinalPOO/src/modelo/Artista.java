@@ -58,6 +58,11 @@ public class Artista{
         this.generoPrincipal = generoPrincipal;
     }
     
+    @Override
+    public String toString() {
+        return this.nome;
+    }
+    
     
 
  
