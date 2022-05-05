@@ -23,7 +23,6 @@ public class TelaCadastrarMusica extends javax.swing.JFrame {
         initComponents();
         this.controle = controle;
         List<Artista> artistas = controle.buscarListaDeArtistas(); 
-        
         DefaultComboBoxModel model = new DefaultComboBoxModel(artistas.toArray());
         jComboBoxArtistas.setModel(model);
     }

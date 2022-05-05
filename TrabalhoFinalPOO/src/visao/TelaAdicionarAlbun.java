@@ -6,6 +6,9 @@
 package visao;
 
 import controle.Controle;
+import java.util.List;
+import javax.swing.DefaultComboBoxModel;
+import modelo.Artista;
 
 /**
  *
@@ -19,6 +22,9 @@ public class TelaAdicionarAlbun extends javax.swing.JFrame {
     public TelaAdicionarAlbun(Controle controle) {
         this.controle = controle;
         initComponents();
+        List<Artista> artistas = controle.buscarListaDeArtistas(); 
+        DefaultComboBoxModel model = new DefaultComboBoxModel(artistas.toArray());
+        jComboBoxArtistas.setModel(model);
     }
 
     /**
