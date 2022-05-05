@@ -36,13 +36,13 @@ public class TelaAutoCadastro extends javax.swing.JFrame {
         jLabelEmail = new javax.swing.JLabel();
         jLabelSenha = new javax.swing.JLabel();
         jTextFieldEmail = new javax.swing.JTextField();
-        jTextFieldSenha = new javax.swing.JTextField();
         jTextFieldNome = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        jTextFieldComfirmarSenha = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jButtonCancelar = new javax.swing.JButton();
         jButtonComfirmarCadastro = new javax.swing.JButton();
+        jPasswordFieldComfirmarSenha = new javax.swing.JPasswordField();
+        jPasswordFieldSenha = new javax.swing.JPasswordField();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
 
@@ -66,8 +66,6 @@ public class TelaAutoCadastro extends javax.swing.JFrame {
 
         jTextFieldEmail.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
-        jTextFieldSenha.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-
         jTextFieldNome.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTextFieldNome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -77,8 +75,6 @@ public class TelaAutoCadastro extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("Confirmar senha:");
-
-        jTextFieldComfirmarSenha.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         jButtonCancelar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonCancelar.setText("Cancelar");
@@ -117,10 +113,18 @@ public class TelaAutoCadastro extends javax.swing.JFrame {
                 .addContainerGap(24, Short.MAX_VALUE))
         );
 
+        jPasswordFieldComfirmarSenha.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        jPasswordFieldSenha.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 27, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -132,8 +136,8 @@ public class TelaAutoCadastro extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTextFieldComfirmarSenha, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextFieldSenha, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPasswordFieldSenha, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPasswordFieldComfirmarSenha, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTextFieldNome, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTextFieldEmail, javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
@@ -142,10 +146,6 @@ public class TelaAutoCadastro extends javax.swing.JFrame {
                                     .addComponent(jLabelNome))
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addGap(43, 43, 43))))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -160,18 +160,17 @@ public class TelaAutoCadastro extends javax.swing.JFrame {
                 .addComponent(jTextFieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabelSenha)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextFieldSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPasswordFieldSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(8, 8, 8)
                 .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                .addComponent(jPasswordFieldComfirmarSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextFieldComfirmarSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 590, 290));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 590, 310));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI Historic", 0, 24)); // NOI18N
         jLabel2.setText("CADASTRE-SE");
@@ -203,14 +202,14 @@ public class TelaAutoCadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldNomeActionPerformed
 
     private void jButtonComfirmarCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonComfirmarCadastroActionPerformed
-        if(controle.comferirSenha(jTextFieldSenha.getText(),jTextFieldComfirmarSenha.getText())){
-            if(controle.comfirmarAutoCadastro(jTextFieldNome.getText(), jTextFieldEmail.getText(), jTextFieldSenha.getText())){
+        if(controle.comferirSenha(jPasswordFieldSenha.getText(),jPasswordFieldComfirmarSenha.getText())){
+            if(controle.comfirmarAutoCadastro(jTextFieldNome.getText(), jTextFieldEmail.getText(), jPasswordFieldSenha.getText())){
                 JOptionPane.showMessageDialog(null,"Cadastrado com sucesso!!","Servidor",JOptionPane.PLAIN_MESSAGE);
             }
         }else{
             JOptionPane.showMessageDialog(this,"As senhas não conferem!!","Servidor",JOptionPane.ERROR_MESSAGE);
-            jTextFieldSenha.setText("");
-            jTextFieldComfirmarSenha.setText("");
+            jPasswordFieldSenha.setText("");
+            jPasswordFieldComfirmarSenha.setText("");
         }
         
     }//GEN-LAST:event_jButtonComfirmarCadastroActionPerformed
@@ -239,9 +238,9 @@ public class TelaAutoCadastro extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JTextField jTextFieldComfirmarSenha;
+    private javax.swing.JPasswordField jPasswordFieldComfirmarSenha;
+    private javax.swing.JPasswordField jPasswordFieldSenha;
     private javax.swing.JTextField jTextFieldEmail;
     private javax.swing.JTextField jTextFieldNome;
-    private javax.swing.JTextField jTextFieldSenha;
     // End of variables declaration//GEN-END:variables
 }

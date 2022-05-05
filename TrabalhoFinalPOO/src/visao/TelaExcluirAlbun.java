@@ -18,6 +18,8 @@ import modelo.Albun;
 public class TelaExcluirAlbun extends javax.swing.JFrame {
     Controle controle;
     List<Albun> albuns;
+    
+    
     public TelaExcluirAlbun(Controle controle) {
         initComponents();
         this.controle = controle;
