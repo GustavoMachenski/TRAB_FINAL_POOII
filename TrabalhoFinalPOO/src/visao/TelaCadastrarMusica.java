@@ -6,8 +6,10 @@
 package visao;
 
 import controle.Controle;
+import java.io.File;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JFileChooser;
 import modelo.Albun;
 import modelo.Artista;
 
@@ -31,6 +33,8 @@ public class TelaCadastrarMusica extends javax.swing.JFrame {
         DefaultComboBoxModel model0 = new DefaultComboBoxModel(albuns.toArray());
         jComboBoxAlbuns.setModel(model0);
         
+        
+        
     }
 
     /**
@@ -43,9 +47,9 @@ public class TelaCadastrarMusica extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jButton3 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
+        jButtonProcurar = new javax.swing.JButton();
+        jTextFieldProcurar = new javax.swing.JTextField();
+        Arquivo = new javax.swing.JLabel();
         jButtonCancelar = new javax.swing.JButton();
         jButtonComfirmar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
@@ -65,9 +69,14 @@ public class TelaCadastrarMusica extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setText("Procurar");
+        jButtonProcurar.setText("Procurar");
+        jButtonProcurar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonProcurarActionPerformed(evt);
+            }
+        });
 
-        jLabel1.setText("Arquivo");
+        Arquivo.setText("Arquivo");
 
         jButtonCancelar.setText("Cancelar");
         jButtonCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -115,9 +124,9 @@ public class TelaCadastrarMusica extends javax.swing.JFrame {
                 .addGap(37, 37, 37)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
+                        .addComponent(Arquivo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jTextFieldProcurar, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addComponent(jLabel4)
@@ -136,7 +145,7 @@ public class TelaCadastrarMusica extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jComboBoxAlbuns, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton3)
+                .addComponent(jButtonProcurar)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -161,9 +170,9 @@ public class TelaCadastrarMusica extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton3))
-                    .addComponent(jLabel1))
+                        .addComponent(jTextFieldProcurar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButtonProcurar))
+                    .addComponent(Arquivo))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonComfirmar)
@@ -201,25 +210,35 @@ public class TelaCadastrarMusica extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBoxArtistasActionPerformed
 
+    private void jButtonProcurarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonProcurarActionPerformed
+        JFileChooser fc = new JFileChooser();
+        fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        fc.showOpenDialog(this);
+        File f = fc.getSelectedFile();
+        jTextFieldProcurar.setText(f.getName());
+        f.getPath();
+        
+    }//GEN-LAST:event_jButtonProcurarActionPerformed
+
     /**
      * @param args the command line arguments
      */
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton3;
+    private javax.swing.JLabel Arquivo;
     private javax.swing.JButton jButtonCancelar;
     private javax.swing.JButton jButtonComfirmar;
+    private javax.swing.JButton jButtonProcurar;
     private javax.swing.JComboBox<String> jComboBoxAlbuns;
     private javax.swing.JComboBox<String> jComboBoxArtistas;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextFieldProcurar;
     // End of variables declaration//GEN-END:variables
 }
