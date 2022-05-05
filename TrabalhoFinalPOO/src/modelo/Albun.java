@@ -1,5 +1,6 @@
 package modelo;
 
+import DAO.ArtistaDAO;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -101,4 +102,11 @@ public class Albun {
     public List<Musica> getListaMusicas() {
         return listaMusicas;
     }
+
+    @Override
+    public String toString() {
+        return "Albun:   "+ this.nome + "   |   Artista:   " + artista.getNome(); 
+    }
+    
+    
 }

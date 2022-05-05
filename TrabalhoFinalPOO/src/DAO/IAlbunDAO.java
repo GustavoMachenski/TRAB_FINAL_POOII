@@ -7,6 +7,7 @@ package DAO;
 import exceptions.PersistenceException;
 import java.util.List;
 import modelo.Albun;
+import modelo.Artista;
 
 
 /**
@@ -22,4 +23,6 @@ public interface IAlbunDAO {
     public boolean excluir(Albun a) throws PersistenceException;
     
     public Albun consultar(int id) throws PersistenceException;
+    
+    public List<Albun> consultarTodos() throws PersistenceException;
 }

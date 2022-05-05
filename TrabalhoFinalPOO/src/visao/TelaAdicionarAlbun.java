@@ -41,7 +41,7 @@ public class TelaAdicionarAlbun extends javax.swing.JFrame {
         jTextFieldNomeAlbun = new javax.swing.JTextField();
         jComboBoxArtistas = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        jButtonCadastrar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jButtonCancelar = new javax.swing.JButton();
 
@@ -69,8 +69,13 @@ public class TelaAdicionarAlbun extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Artista");
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton1.setText("Cadastrar");
+        jButtonCadastrar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButtonCadastrar.setText("Cadastrar");
+        jButtonCadastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCadastrarActionPerformed(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel3.setText("CADASTRAR ALBUN");
@@ -103,7 +108,7 @@ public class TelaAdicionarAlbun extends javax.swing.JFrame {
                 .addGap(110, 110, 110))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(jButtonCadastrar)
                 .addGap(18, 18, 18)
                 .addComponent(jButtonCancelar)
                 .addGap(32, 32, 32))
@@ -127,7 +132,7 @@ public class TelaAdicionarAlbun extends javax.swing.JFrame {
                     .addComponent(jComboBoxArtistas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(jButtonCadastrar)
                     .addComponent(jButtonCancelar))
                 .addContainerGap())
         );
@@ -149,12 +154,17 @@ public class TelaAdicionarAlbun extends javax.swing.JFrame {
         controle.fecharTelaAdicionarAlbun();
     }//GEN-LAST:event_formWindowClosed
 
+    private void jButtonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarActionPerformed
+        Artista artista = (Artista) jComboBoxArtistas.getSelectedItem();
+        controle.cadastrarAlbun(jTextFieldNomeAlbun.getText(),artista);
+    }//GEN-LAST:event_jButtonCadastrarActionPerformed
+
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButtonCadastrar;
     private javax.swing.JButton jButtonCancelar;
     private javax.swing.JComboBox<String> jComboBoxArtistas;
     private javax.swing.JLabel jLabel1;

@@ -10,6 +10,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import modelo.Albun;
 import modelo.Artista;
 
@@ -98,4 +100,28 @@ public class AlbunDAO implements IAlbunDAO {
         }
     }
 
+    @Override
+    public List<Albun> consultarTodos() throws PersistenceException {
+       List<Albun> albuns = new ArrayList<>();
+        try {
+            Conexao conexao = new Conexao();
+            Connection con = conexao.conectar();
+            PreparedStatement ps = con.prepareStatement("SELECT idalbun, nome, idartista FROM albun");
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                ArtistaDAO artistaDAO = new ArtistaDAO(); 
+                Artista artista = artistaDAO.consultar(rs.getInt("idartista"));
+                Albun a = new Albun(rs.getInt("idalbun"), rs.getString("nome"), artista);
+                albuns.add(a);
+            }
+            rs.close();
+            ps.close();
+            con.close();
+            return albuns;
+        } catch (SQLException ex) {
+            System.out.println(ex);
+            throw new PersistenceException("Banco de dados inacessível");
+            
+        }
+    }
 }

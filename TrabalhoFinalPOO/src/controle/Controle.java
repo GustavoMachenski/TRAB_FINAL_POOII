@@ -5,6 +5,7 @@
  */
 package controle;
 
+import DAO.AlbunDAO;
 import DAO.ArtistaDAO;
 import DAO.DAOgeral;
 import DAO.UsuarioDAO;
@@ -18,6 +19,8 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import modelo.Albun;
 import modelo.Artista;
 
 /**
@@ -108,6 +111,14 @@ public class Controle {
         telas.get("telaplayer").setVisible(true);
         telas.get("telaprincipal").setVisible(false);
     }
+    
+    public void abrirTelasExcluirAlbun() {
+        telas.put("telaexcluiralbun", fabrica.criarTela("telaexcluiralbun", this));
+        telas.get("telaexcluiralbun").setVisible(true);
+        telas.get("telaprincipal").setVisible(false);
+    }
+    
+    
 
     //fechamento de telas
     public void fecharTelaAutoCadastro() {
@@ -144,6 +155,11 @@ public class Controle {
 
     public void fecharTelaAdicionarAlbun() {
         telas.get("telaadicionaralbun").dispose();
+        telas.get("telaprincipal").setVisible(true);
+    }
+    
+    public void fecharTelaExcluirAlbun() {
+        telas.get("telaexcluiralbun").dispose();
         telas.get("telaprincipal").setVisible(true);
     }
 
@@ -189,7 +205,7 @@ public class Controle {
             Artista a = new Artista(nome, generoPrincipal);
             artistaDAO.inserir(a);
             telas.get("telacadastrarartista").dispose();
-                telas.get("telaprincipal").setVisible(true);
+            telas.get("telaprincipal").setVisible(true);
         } catch (PersistenceException ex) {
             Logger.getLogger(Controle.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -204,6 +220,43 @@ public class Controle {
             Logger.getLogger(Controle.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
+    }
+
+    public void cadastrarAlbun(String nome, Artista artista) {
+        try {
+            AlbunDAO albundao = new AlbunDAO();
+            Albun a = new Albun(nome, artista);
+            albundao.inserir(a);
+            telas.get("telaadicionaralbun").dispose();
+            telas.get("telaprincipal").setVisible(true);
+            JOptionPane.showMessageDialog(null,"Cadastrado com sucesso!!","Servidor",JOptionPane.PLAIN_MESSAGE);
+        } catch (PersistenceException ex) {
+            JOptionPane.showMessageDialog(null, "Erro", ex.getMessage(), JOptionPane.ERROR_MESSAGE);
+        }
+        
+    }
+
+    public List<Albun> consultarAlbuns() {
+        try {
+            AlbunDAO albunDAO = new AlbunDAO();
+            List<Albun> albuns = albunDAO.consultarTodos();
+            return albuns ;
+        } catch (PersistenceException ex) {
+            JOptionPane.showMessageDialog(null, "Erro", ex.getMessage(), JOptionPane.ERROR_MESSAGE);
+        }
+        return null;
+    }
+
+    public void exlcuirAlbun(Albun albun) {
+        try {
+            AlbunDAO albunDAO = new AlbunDAO();
+            albunDAO.excluir(albun);
+            telas.get("telaexcluiralbun").dispose();
+            telas.get("telaprincipal").setVisible(true);
+            JOptionPane.showMessageDialog(null,"Albun excluido!!","Servidor",JOptionPane.PLAIN_MESSAGE);
+        } catch (PersistenceException ex) {
+            Logger.getLogger(Controle.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }

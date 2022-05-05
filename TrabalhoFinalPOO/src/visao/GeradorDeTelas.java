@@ -14,24 +14,27 @@ import javax.swing.JFrame;
  * @author Gustavo
  */
 public class GeradorDeTelas {
-    
-    public JFrame criarTela(String nome, Controle controle){
+
+    public JFrame criarTela(String nome, Controle controle) {
         JFrame frame;
-        if(nome.equals("telalogin")){
+        if (nome.equals("telalogin")) {
             frame = new TelaLogin(controle);
-        }else if(nome.equals("telaautocadastro")){
+        } else if (nome.equals("telaautocadastro")) {
             frame = new TelaAutoCadastro(controle);
-        }else if(nome.equals("telaprincipal")){
+        } else if (nome.equals("telaprincipal")) {
             frame = new TelaPrincipal(controle);
-        }else if(nome.equals("telacadastrarmusica")){
+        } else if (nome.equals("telacadastrarmusica")) {
             frame = new TelaCadastrarMusica(controle);
-        }else if(nome.equals("telacadastrarartista")){
+        } else if (nome.equals("telacadastrarartista")) {
             frame = new TelaCadastrarArtista(controle);
-        }else if(nome.equals("telaplayer")){
+        } else if (nome.equals("telaplayer")) {
             frame = new TelaPlayer(controle);
-        }else if(nome.equals("telaadicionaralbun")){
+        } else if (nome.equals("telaadicionaralbun")) {
             frame = new TelaAdicionarAlbun(controle);
-        }else{
+        } else if (nome.equals("telaexcluiralbun")) {
+            frame = new TelaExcluirAlbun(controle);
+
+        } else {
             frame = new JFrame();
         }
         frame.setLocationRelativeTo(null);

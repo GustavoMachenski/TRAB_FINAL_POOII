@@ -66,8 +66,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenuItemSair = new javax.swing.JMenuItem();
         jMenuAdministrador = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItemCadastrarMusica = new javax.swing.JMenuItem();
+        jMenuAlbun = new javax.swing.JMenu();
+        jMenuItemCadastrarAlbun = new javax.swing.JMenuItem();
+        jMenuItemExcluirAlbun = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Player");
@@ -230,21 +232,33 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         jMenuAdministrador.add(jMenuItem5);
 
-        jMenuItem4.setText("Artista");
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItemCadastrarMusica.setText("Artista");
+        jMenuItemCadastrarMusica.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem4ActionPerformed(evt);
+                jMenuItemCadastrarMusicaActionPerformed(evt);
             }
         });
-        jMenuAdministrador.add(jMenuItem4);
+        jMenuAdministrador.add(jMenuItemCadastrarMusica);
 
-        jMenuItem3.setText("Albun");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+        jMenuAlbun.setText("Albun");
+
+        jMenuItemCadastrarAlbun.setText("Cadastrar");
+        jMenuItemCadastrarAlbun.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
+                jMenuItemCadastrarAlbunActionPerformed(evt);
             }
         });
-        jMenuAdministrador.add(jMenuItem3);
+        jMenuAlbun.add(jMenuItemCadastrarAlbun);
+
+        jMenuItemExcluirAlbun.setText("Excluir");
+        jMenuItemExcluirAlbun.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemExcluirAlbunActionPerformed(evt);
+            }
+        });
+        jMenuAlbun.add(jMenuItemExcluirAlbun);
+
+        jMenuAdministrador.add(jMenuAlbun);
 
         jMenuBar.add(jMenuAdministrador);
 
@@ -297,17 +311,21 @@ public class TelaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        controle.abrirTelaAdicionarAlbun();
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
-
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         controle.abrirTelaCadastrarMusica();
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+    private void jMenuItemCadastrarMusicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCadastrarMusicaActionPerformed
         controle.abrirTelaCadastrarArtista();
-    }//GEN-LAST:event_jMenuItem4ActionPerformed
+    }//GEN-LAST:event_jMenuItemCadastrarMusicaActionPerformed
+
+    private void jMenuItemExcluirAlbunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemExcluirAlbunActionPerformed
+        controle.abrirTelasExcluirAlbun();
+    }//GEN-LAST:event_jMenuItemExcluirAlbunActionPerformed
+
+    private void jMenuItemCadastrarAlbunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCadastrarAlbunActionPerformed
+        controle.abrirTelaAdicionarAlbun();
+    }//GEN-LAST:event_jMenuItemCadastrarAlbunActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -319,12 +337,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JList<String> jList1;
     private javax.swing.JList<String> jListMusicas;
     private javax.swing.JMenu jMenuAdministrador;
+    private javax.swing.JMenu jMenuAlbun;
     private javax.swing.JMenuBar jMenuBar;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItemCadastrarAlbun;
+    private javax.swing.JMenuItem jMenuItemCadastrarMusica;
+    private javax.swing.JMenuItem jMenuItemExcluirAlbun;
     private javax.swing.JMenuItem jMenuItemSair;
     private javax.swing.JMenu jMenuPrincipal;
     private javax.swing.JPanel jPanel1;
