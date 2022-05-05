@@ -5,16 +5,16 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class Conexao {
-    
+
     public Connection conectar() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/poo_spotify";
             String usuario = "root";
             String senha = "";
-            
+
             return DriverManager.getConnection(url, usuario, senha);
-            
+
         } catch (ClassNotFoundException ex) {
             System.out.println("Não encontrei o Driver");
             System.out.println(ex);
@@ -25,5 +25,5 @@ public class Conexao {
         }
         return null;
     }
-    
+
 }
