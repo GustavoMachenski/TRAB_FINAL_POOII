@@ -7,7 +7,6 @@ package visao;
 
 import controle.Controle;
 import java.io.File;
-import java.io.FileReader;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFileChooser;
