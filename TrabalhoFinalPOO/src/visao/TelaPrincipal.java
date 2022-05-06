@@ -315,10 +315,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         controle.abrirTelaCadastrarMusica();
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
-    private void jMenuItemCadastrarMusicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCadastrarMusicaActionPerformed
-        controle.abrirTelaCadastrarArtista();
-    }//GEN-LAST:event_jMenuItemCadastrarMusicaActionPerformed
-
     private void jMenuItemExcluirAlbunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemExcluirAlbunActionPerformed
         controle.abrirTelasExcluirAlbun();
     }//GEN-LAST:event_jMenuItemExcluirAlbunActionPerformed
@@ -326,6 +322,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void jMenuItemCadastrarAlbunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCadastrarAlbunActionPerformed
         controle.abrirTelaAdicionarAlbun();
     }//GEN-LAST:event_jMenuItemCadastrarAlbunActionPerformed
+
+    private void jMenuItemCadastrarMusicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCadastrarMusicaActionPerformed
+        controle.abrirTelaGerenciarArtista();
+    }//GEN-LAST:event_jMenuItemCadastrarMusicaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
