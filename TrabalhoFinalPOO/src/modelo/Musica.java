@@ -96,6 +96,14 @@ public class Musica {
         this.artista = artista;
     }
     
+    public Albun getAlbun() {
+        return albun;
+    }
+
+    public void setAlbun(Albun albun) {
+        this.albun = albun;
+    }
+    
    
     
 

@@ -50,7 +50,6 @@ public class TelaGerenciarArtista extends javax.swing.JFrame {
         
         DefaultTableModel modeloTabela = new DefaultTableModel(dados, titulos);
         jTableArtistas.setModel(modeloTabela);
-        
     }
 
     /**

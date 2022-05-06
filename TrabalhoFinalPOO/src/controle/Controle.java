@@ -8,6 +8,7 @@ package controle;
 import DAO.AlbunDAO;
 import DAO.ArtistaDAO;
 import DAO.DAOgeral;
+import DAO.MusicaDAO;
 import DAO.UsuarioDAO;
 import exceptions.HashGenerationException;
 import exceptions.PersistenceException;
@@ -21,8 +22,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import modelo.Albun;
 import modelo.Artista;
+import modelo.Musica;
 import util.Digest;
 
 /**
@@ -37,7 +40,7 @@ public class Controle {
     private Administrador adm;
     DAOgeral daogeral = new DAOgeral();
 
-    // contrutor
+    // construtor
     public Controle() {
         fabrica = new GeradorDeTelas();
         telas = new HashMap<>();
@@ -205,7 +208,7 @@ public class Controle {
             return false;
         }
     }
-
+    ////////metodos de artista//////////
     public void inserirArtista(String nome, String generoPrincipal) {
         try {
             ArtistaDAO artistaDAO = new ArtistaDAO();
@@ -226,7 +229,28 @@ public class Controle {
         }
         return null;
     }
+    
+    public void excluirArtista(Artista artista) {
+        try {
+            ArtistaDAO artistaDAO = new ArtistaDAO();
+            artistaDAO.excluir(artista);
+            JOptionPane.showMessageDialog(null,"Artista excluido!!","Servidor",JOptionPane.PLAIN_MESSAGE);
+        } catch (PersistenceException ex) {
+            Logger.getLogger(Controle.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
+    public void atulizarArtista(int idArtista, String nome, String generoPrincipal) {
+        try {
+            Artista a = new Artista(idArtista, nome, generoPrincipal);
+            ArtistaDAO artistaDAO = new ArtistaDAO();
+            artistaDAO.alterar(a);
+            JOptionPane.showMessageDialog(null,"Artista editado!!","Servidor",JOptionPane.PLAIN_MESSAGE);
+        } catch (PersistenceException ex) {
+            Logger.getLogger(Controle.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    //// metodos de albuns ////////
     public void cadastrarAlbun(String nome, Artista artista) {
         try {
             AlbunDAO albundao = new AlbunDAO();
@@ -264,22 +288,24 @@ public class Controle {
         }
     }
 
-    public void excluirArtista(Artista artista) {
+    /// metodos de musicas///
+
+    public List<Musica> buscarListaDeMusicas() {
         try {
-            ArtistaDAO artistaDAO = new ArtistaDAO();
-            artistaDAO.excluir(artista);
-            JOptionPane.showMessageDialog(null,"Artista excluido!!","Servidor",JOptionPane.PLAIN_MESSAGE);
+            MusicaDAO musicaDAO = new MusicaDAO();
+            List<Musica> musicas = musicaDAO.consultarTodas();
+            return musicas;
         } catch (PersistenceException ex) {
             Logger.getLogger(Controle.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return null;
     }
 
-    public void atulizarArtista(int idArtista, String nome, String generoPrincipal) {
+    public void cadastrarMusica(String nome, String genero, String path,Artista artista, Albun albun) {
         try {
-            Artista a = new Artista(idArtista, nome, generoPrincipal);
-            ArtistaDAO artistaDAO = new ArtistaDAO();
-            artistaDAO.alterar(a);
-            JOptionPane.showMessageDialog(null,"Artista editado!!","Servidor",JOptionPane.PLAIN_MESSAGE);
+            MusicaDAO musicaDAO = new MusicaDAO();
+            Musica m =  new Musica(nome, genero, path, artista, albun);
+            musicaDAO.inserir(m);
         } catch (PersistenceException ex) {
             Logger.getLogger(Controle.class.getName()).log(Level.SEVERE, null, ex);
         }

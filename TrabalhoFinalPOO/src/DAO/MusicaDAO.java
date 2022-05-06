@@ -20,12 +20,13 @@ public class MusicaDAO implements IMusicaDAO{
             Conexao conexao = new Conexao();
             Connection con = conexao.conectar();
             PreparedStatement ps
-                    = con.prepareStatement("INSERT INTO musica(nome, genero, caminho, idartista) VALUES (?, ?, ?, ?)",
+                    = con.prepareStatement("INSERT INTO musica(nome, genero, caminho, idartista,idalbun) VALUES (?, ?, ?, ?, ?)",
                             PreparedStatement.RETURN_GENERATED_KEYS);
             ps.setString(1, m.getNome());
             ps.setString(2, m.getGenero());
             ps.setString(3, m.getCaminho());
             ps.setInt(4, m.getArtista().getIdArtista());
+            ps.setInt(5, m.getAlbun().getIdAlbun());
             ps.execute();
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
@@ -45,12 +46,13 @@ public class MusicaDAO implements IMusicaDAO{
             Conexao conexao = new Conexao();
             Connection con = conexao.conectar();
             PreparedStatement ps
-                    = con.prepareStatement("UPDATE musica SET nome=?, genero=?, caminho=?, idartista=? WHERE idmusica=?");
+                    = con.prepareStatement("UPDATE musica SET nome=?, genero=?, caminho=?, idartista=?, idalbun=? WHERE idmusica=?");
             ps.setString(1, m.getNome());
             ps.setString(2, m.getGenero());
             ps.setString(3, m.getCaminho());
             ps.setInt(4, m.getArtista().getIdArtista());
-            ps.setInt(5, m.getIdMusica());
+            ps.setInt(5, m.getAlbun().getIdAlbun());
+            ps.setInt(6, m.getIdMusica());
             ps.execute();
             ps.close();
             con.close();
