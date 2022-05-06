@@ -6,6 +6,9 @@
 package visao;
 
 import controle.Controle;
+import exceptions.HashGenerationException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -158,10 +161,14 @@ public class TelaLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonLogarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLogarActionPerformed
-        //controle.validarLogin(jTextFieldEmail.getText(), jTextFieldSenha.getText());
-        boolean info = controle.abrirTelaPrincipal(jTextFieldEmail.getText(),jPasswordFieldSenha.getText());
-        if(!info){
-            JOptionPane.showMessageDialog(this,"Usuario ou senha invalidos!!","Servidor",JOptionPane.ERROR_MESSAGE);
+        try {
+            //controle.validarLogin(jTextFieldEmail.getText(), jTextFieldSenha.getText());
+            boolean info = controle.abrirTelaPrincipal(jTextFieldEmail.getText(),jPasswordFieldSenha.getText());
+            if(!info){
+                JOptionPane.showMessageDialog(this,"Usuario ou senha invalidos!!","Servidor",JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (HashGenerationException ex) {
+            Logger.getLogger(TelaLogin.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButtonLogarActionPerformed
 
