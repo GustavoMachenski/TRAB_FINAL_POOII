@@ -9,6 +9,7 @@ import DAO.AlbunDAO;
 import DAO.ArtistaDAO;
 import DAO.DAOgeral;
 import DAO.UsuarioDAO;
+import exceptions.HashGenerationException;
 import exceptions.PersistenceException;
 import modelo.Administrador;
 import modelo.Usuario;
@@ -22,6 +23,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import modelo.Albun;
 import modelo.Artista;
+import util.Digest;
 
 /**
  *
@@ -63,11 +65,11 @@ public class Controle {
         telas.get("telalogin").setVisible(false);
     }
 
-    public boolean abrirTelaPrincipal(String email, String senha) {
+    public boolean abrirTelaPrincipal(String email, String senha) throws HashGenerationException {
 
         try {
             UsuarioDAO usuarioDAO = new UsuarioDAO();
-            usuario = usuarioDAO.consultarLogin(email, senha);
+            usuario = usuarioDAO.consultarLogin(email, Digest.hashString(senha, "SHA-256"));
 
             if (usuario.getIdUsuario() == 0) {
                 return false;
@@ -94,9 +96,9 @@ public class Controle {
         telas.get("telaprincipal").setVisible(false);
     }
 
-    public void abrirTelaCadastrarArtista() {
-        telas.put("telacadastrarartista", fabrica.criarTela("telacadastrarartista", this));
-        telas.get("telacadastrarartista").setVisible(true);
+    public void abrirTelaGerenciarArtista() {
+        telas.put("telagerenciarartista", fabrica.criarTela("telagerenciarartista", this));
+        telas.get("telagerenciarartista").setVisible(true);
         telas.get("telaprincipal").setVisible(false);
     }
 
@@ -138,8 +140,8 @@ public class Controle {
         telas.get("telalogin").setVisible(true);
     }
 
-    public void fecharTelaCadastrarArtista() {
-        telas.get("telacadastrarartista").dispose();
+    public void fecharTelaGerenciarArtista() {
+        telas.get("telagerenciarartista").dispose();
         telas.get("telaprincipal").setVisible(true);
     }
 
@@ -162,6 +164,11 @@ public class Controle {
         telas.get("telaexcluiralbun").dispose();
         telas.get("telaprincipal").setVisible(true);
     }
+    
+    public void fecharTelaExcluirArtista() {
+        telas.get("telaexcluirartista").dispose();
+        telas.get("telaprincipal").setVisible(true);
+    }
 
     // validações e outros
     public Usuario getUsuario() {
@@ -172,11 +179,11 @@ public class Controle {
         return this.adm;
     }
 
-    public boolean comfirmarAutoCadastro(String nome, String email, String senha) {
+    public boolean comfirmarAutoCadastro(String nome, String email, String senha) throws HashGenerationException {
         try {
             UsuarioDAO usuarioDAO = new UsuarioDAO();
 
-            Usuario u = new Usuario(nome, email, senha, "usr");
+            Usuario u = new Usuario(nome, email, Digest.hashString(senha,"SHA-256"), "usr");
 
             if (usuarioDAO.inserir(u)) {
                 telas.get("telaautocadastro").dispose();
@@ -258,5 +265,7 @@ public class Controle {
             Logger.getLogger(Controle.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+    
 
 }

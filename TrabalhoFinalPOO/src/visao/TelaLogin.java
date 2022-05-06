@@ -6,6 +6,9 @@
 package visao;
 
 import controle.Controle;
+import exceptions.HashGenerationException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -34,13 +37,13 @@ public class TelaLogin extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabelLogin = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jTextFieldSenha = new javax.swing.JTextField();
         jLabelSenha = new javax.swing.JLabel();
         jTextFieldEmail = new javax.swing.JTextField();
         jLabelEmail = new javax.swing.JLabel();
         jButtonLogar = new javax.swing.JButton();
         jLabelCadastrese = new javax.swing.JLabel();
         jButtonCadastrase = new javax.swing.JButton();
+        jPasswordFieldSenha = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Login");
@@ -69,14 +72,6 @@ public class TelaLogin extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 330, 60));
 
-        jTextFieldSenha.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jTextFieldSenha.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextFieldSenha.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldSenhaActionPerformed(evt);
-            }
-        });
-
         jLabelSenha.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabelSenha.setText("Senha");
 
@@ -103,21 +98,20 @@ public class TelaLogin extends javax.swing.JFrame {
             }
         });
 
+        jPasswordFieldSenha.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jPasswordFieldSenha.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jPasswordFieldSenha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jPasswordFieldSenhaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextFieldEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE)
-                    .addComponent(jTextFieldSenha))
-                .addGap(32, 32, 32))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(125, 125, 125)
-                        .addComponent(jButtonLogar))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabelCadastrese))
@@ -129,8 +123,17 @@ public class TelaLogin extends javax.swing.JFrame {
                         .addComponent(jLabelSenha))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(143, 143, 143)
-                        .addComponent(jLabelEmail)))
-                .addContainerGap(122, Short.MAX_VALUE))
+                        .addComponent(jLabelEmail))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(128, 128, 128)
+                        .addComponent(jButtonLogar)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(0, 38, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jPasswordFieldSenha)
+                    .addComponent(jTextFieldEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE))
+                .addGap(32, 32, 32))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -141,11 +144,11 @@ public class TelaLogin extends javax.swing.JFrame {
                 .addComponent(jTextFieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabelSenha)
-                .addGap(18, 18, 18)
-                .addComponent(jTextFieldSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(22, 22, 22)
+                .addComponent(jPasswordFieldSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButtonLogar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addComponent(jLabelCadastrese)
                 .addGap(14, 14, 14)
                 .addComponent(jButtonCadastrase)
@@ -157,21 +160,25 @@ public class TelaLogin extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextFieldSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldSenhaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldSenhaActionPerformed
-
     private void jButtonLogarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLogarActionPerformed
-        //controle.validarLogin(jTextFieldEmail.getText(), jTextFieldSenha.getText());
-        boolean info = controle.abrirTelaPrincipal(jTextFieldEmail.getText(),jTextFieldSenha.getText());
-        if(!info){
-            JOptionPane.showMessageDialog(this,"Usuario ou senha invalidos!!","Servidor",JOptionPane.ERROR_MESSAGE);
+        try {
+            //controle.validarLogin(jTextFieldEmail.getText(), jTextFieldSenha.getText());
+            boolean info = controle.abrirTelaPrincipal(jTextFieldEmail.getText(),jPasswordFieldSenha.getText());
+            if(!info){
+                JOptionPane.showMessageDialog(this,"Usuario ou senha invalidos!!","Servidor",JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (HashGenerationException ex) {
+            Logger.getLogger(TelaLogin.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButtonLogarActionPerformed
 
     private void jButtonCadastraseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastraseActionPerformed
         controle.abrirTelaAutoCadastro();
     }//GEN-LAST:event_jButtonCadastraseActionPerformed
+
+    private void jPasswordFieldSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordFieldSenhaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPasswordFieldSenhaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -187,7 +194,7 @@ public class TelaLogin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelSenha;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPasswordField jPasswordFieldSenha;
     private javax.swing.JTextField jTextFieldEmail;
-    private javax.swing.JTextField jTextFieldSenha;
     // End of variables declaration//GEN-END:variables
 }
