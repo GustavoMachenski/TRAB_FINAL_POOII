@@ -25,13 +25,15 @@ public class GeradorDeTelas {
             frame = new TelaPrincipal(controle);
         } else if (nome.equals("telacadastrarmusica")) {
             frame = new TelaCadastrarMusica(controle);
-        } else if (nome.equals("telacadastrarartista")) {
-            frame = new TelaCadastrarArtista(controle);
+        } else if (nome.equals("telagerenciarartista")) {
+            frame = new TelaGerenciarArtista(controle);
         } else if (nome.equals("telaplayer")) {
             frame = new TelaPlayer(controle);
         } else if (nome.equals("telaadicionaralbun")) {
             frame = new TelaAdicionarAlbun(controle);
         } else if (nome.equals("telaexcluiralbun")) {
+            frame = new TelaExcluirAlbun(controle);
+        } else if (nome.equals("telaexcluirartista")) {
             frame = new TelaExcluirAlbun(controle);
 
         } else {
