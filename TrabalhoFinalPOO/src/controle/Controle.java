@@ -211,8 +211,6 @@ public class Controle {
             ArtistaDAO artistaDAO = new ArtistaDAO();
             Artista a = new Artista(nome, generoPrincipal);
             artistaDAO.inserir(a);
-            telas.get("telacadastrarartista").dispose();
-            telas.get("telaprincipal").setVisible(true);
         } catch (PersistenceException ex) {
             Logger.getLogger(Controle.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -261,6 +259,27 @@ public class Controle {
             telas.get("telaexcluiralbun").dispose();
             telas.get("telaprincipal").setVisible(true);
             JOptionPane.showMessageDialog(null,"Albun excluido!!","Servidor",JOptionPane.PLAIN_MESSAGE);
+        } catch (PersistenceException ex) {
+            Logger.getLogger(Controle.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void excluirArtista(Artista artista) {
+        try {
+            ArtistaDAO artistaDAO = new ArtistaDAO();
+            artistaDAO.excluir(artista);
+            JOptionPane.showMessageDialog(null,"Artista excluido!!","Servidor",JOptionPane.PLAIN_MESSAGE);
+        } catch (PersistenceException ex) {
+            Logger.getLogger(Controle.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void atulizarArtista(int idArtista, String nome, String generoPrincipal) {
+        try {
+            Artista a = new Artista(idArtista, nome, generoPrincipal);
+            ArtistaDAO artistaDAO = new ArtistaDAO();
+            artistaDAO.alterar(a);
+            JOptionPane.showMessageDialog(null,"Artista editado!!","Servidor",JOptionPane.PLAIN_MESSAGE);
         } catch (PersistenceException ex) {
             Logger.getLogger(Controle.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -17,6 +17,12 @@ public class Artista {
         this.generoPrincipal = generoPrinciapal;
     }
 
+    public Artista() {
+        this.idArtista = 0;
+        this.nome = "";
+        this.generoPrincipal = "";
+    }
+
     public int getIdArtista() {
         return idArtista;
     }
