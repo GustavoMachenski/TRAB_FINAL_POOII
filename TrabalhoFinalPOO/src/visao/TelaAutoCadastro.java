@@ -6,6 +6,9 @@
 package visao;
 
 import controle.Controle;
+import exceptions.HashGenerationException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -203,8 +206,12 @@ public class TelaAutoCadastro extends javax.swing.JFrame {
 
     private void jButtonComfirmarCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonComfirmarCadastroActionPerformed
         if(controle.comferirSenha(jPasswordFieldSenha.getText(),jPasswordFieldComfirmarSenha.getText())){
-            if(controle.comfirmarAutoCadastro(jTextFieldNome.getText(), jTextFieldEmail.getText(), jPasswordFieldSenha.getText())){
-                JOptionPane.showMessageDialog(null,"Cadastrado com sucesso!!","Servidor",JOptionPane.PLAIN_MESSAGE);
+            try {
+                if(controle.comfirmarAutoCadastro(jTextFieldNome.getText(), jTextFieldEmail.getText(), jPasswordFieldSenha.getText())){
+                    JOptionPane.showMessageDialog(null,"Cadastrado com sucesso!!","Servidor",JOptionPane.PLAIN_MESSAGE);
+                }
+            } catch (HashGenerationException ex) {
+                Logger.getLogger(TelaAutoCadastro.class.getName()).log(Level.SEVERE, null, ex);
             }
         }else{
             JOptionPane.showMessageDialog(this,"As senhas não conferem!!","Servidor",JOptionPane.ERROR_MESSAGE);
