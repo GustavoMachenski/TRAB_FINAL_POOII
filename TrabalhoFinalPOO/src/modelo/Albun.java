@@ -22,6 +22,13 @@ public class Albun {
         this.artista      = artista ;
         this.listaMusicas = new ArrayList<>();
     }
+
+    public Albun() {
+        this.idAlbun      = 0;
+        this.nome         = "";
+        this.artista      = new Artista();
+        this.listaMusicas = new ArrayList<>();
+    }
     
     public boolean adicionarMusica(Musica musica){
         boolean existe = false;
