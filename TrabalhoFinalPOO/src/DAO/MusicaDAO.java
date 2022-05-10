@@ -79,6 +79,23 @@ public class MusicaDAO implements IMusicaDAO{
     }
 
     @Override
+    public boolean excluirPorIdArtista(int id) throws PersistenceException {
+        try {
+            Conexao conexao = new Conexao();
+            Connection con = conexao.conectar();
+            PreparedStatement ps
+                    = con.prepareStatement("DELETE FROM musica WHERE idartista = ?");
+            ps.setInt(1, id);
+            ps.execute();
+            ps.close();
+            con.close();
+            return true;
+        } catch (SQLException ex) {
+            throw new PersistenceException("Banco de dados inacessível");
+        }
+    }
+    
+    @Override
     public Musica consultar(int id) throws PersistenceException {
         try {
             Conexao conexao = new Conexao();

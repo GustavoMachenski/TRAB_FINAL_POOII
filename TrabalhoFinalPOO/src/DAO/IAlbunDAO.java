@@ -22,6 +22,8 @@ public interface IAlbunDAO {
     
     public boolean excluir(Albun a) throws PersistenceException;
     
+    public boolean excluirPorIdArtista(int id) throws PersistenceException;
+    
     public Albun consultar(int id) throws PersistenceException;
     
     public List<Albun> consultarTodos() throws PersistenceException;

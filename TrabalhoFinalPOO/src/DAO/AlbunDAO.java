@@ -64,8 +64,26 @@ public class AlbunDAO implements IAlbunDAO {
         try {
             Conexao conexao = new Conexao();
             Connection con = conexao.conectar();
+            MusicaDAO musicaDAO = new MusicaDAO();
+            musicaDAO.excluirPorIdArtista(a.getArtista().getIdArtista());
             PreparedStatement ps = con.prepareStatement("DELETE FROM albun WHERE idalbun = ?");
             ps.setInt(1, a.getIdAlbun());
+            ps.execute();
+            ps.close();
+            con.close();
+            return true;
+        } catch (SQLException ex) {
+            throw new PersistenceException("Banco de dados inacessível");
+        }
+    }
+    
+    @Override
+    public boolean excluirPorIdArtista(int id) throws PersistenceException {
+        try {
+            Conexao conexao = new Conexao();
+            Connection con = conexao.conectar();
+            PreparedStatement ps = con.prepareStatement("DELETE FROM albun WHERE idartista = ?");
+            ps.setInt(1, id);
             ps.execute();
             ps.close();
             con.close();
@@ -92,14 +110,14 @@ public class AlbunDAO implements IAlbunDAO {
                 con.close();
                 return a;
             } else {
-                throw new PersistenceException("Playlist não localizada.");
+                throw new PersistenceException("Albun não localizado.");
             }
 
         } catch (SQLException ex) {
             throw new PersistenceException("Banco de dados inacessível");
         }
     }
-
+    
     @Override
     public List<Albun> consultarTodos() throws PersistenceException {
        List<Albun> albuns = new ArrayList<>();

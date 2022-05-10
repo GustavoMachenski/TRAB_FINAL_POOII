@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import modelo.Albun;
 import modelo.Artista;
 
 public class ArtistaDAO implements IArtistaDAO{
@@ -58,8 +59,11 @@ public class ArtistaDAO implements IArtistaDAO{
         try {
             Conexao conexao = new Conexao();
             Connection con = conexao.conectar();
-            PreparedStatement ps
-                    = con.prepareStatement("DELETE FROM artista WHERE idartista = ?");
+            MusicaDAO musicaDAO = new MusicaDAO();
+            musicaDAO.excluirPorIdArtista(a.getIdArtista());
+            AlbunDAO albunDAO = new AlbunDAO();
+            albunDAO.excluirPorIdArtista(a.getIdArtista());
+            PreparedStatement ps = con.prepareStatement("DELETE FROM artista WHERE idartista = ?");
             ps.setInt(1, a.getIdArtista());
             ps.execute();
             ps.close();
