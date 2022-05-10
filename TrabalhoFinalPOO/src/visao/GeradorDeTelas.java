@@ -17,7 +17,7 @@ public class GeradorDeTelas {
 
     public JFrame criarTela(String nome, Controle controle) {
         JFrame frame;
-        if (nome.equals("telalogin")) {
+        if (nome.equals("telalogin")){
             frame = new TelaLogin(controle);
         } else if (nome.equals("telaautocadastro")) {
             frame = new TelaAutoCadastro(controle);
