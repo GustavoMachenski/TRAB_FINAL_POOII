@@ -93,7 +93,7 @@ public class TelaCadastrarMusica extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableMusicas = new javax.swing.JTable();
         jButtonEditar = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jButtonExcluir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastrar Musica");
@@ -240,8 +240,13 @@ public class TelaCadastrarMusica extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton2.setText("Excluir");
+        jButtonExcluir.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButtonExcluir.setText("Excluir");
+        jButtonExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonExcluirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -257,7 +262,7 @@ public class TelaCadastrarMusica extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jButtonEditar)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton2)
+                        .addComponent(jButtonExcluir)
                         .addGap(22, 22, 22))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 477, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -272,7 +277,7 @@ public class TelaCadastrarMusica extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonEditar)
-                    .addComponent(jButton2))
+                    .addComponent(jButtonExcluir))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -309,9 +314,16 @@ public class TelaCadastrarMusica extends javax.swing.JFrame {
     private void jButtonComfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonComfirmarActionPerformed
         Artista artista = (Artista) jComboBoxArtistas.getSelectedItem();
         Albun albun = (Albun) jComboBoxAlbuns.getSelectedItem();
-        controle.cadastrarMusica(jTextFieldNome.getText(), jTextFieldGenero.getText(), this.path, artista, albun);
+        if (this.musica.getIdMusica() == 0) {
+            controle.cadastrarMusica(jTextFieldNome.getText(), jTextFieldGenero.getText(), this.path, artista, albun);
+            this.atualizarTabela();
+        } else {
+            controle.atualizarMusica(musica.getIdMusica(), jTextFieldNome.getText(), jTextFieldGenero.getText(), this.path, artista, albun);
+            this.musica = new Musica();
+        }
         jTextFieldNome.setText("");
         jTextFieldGenero.setText("");
+        jTextFieldProcurar.setText("");
         this.path = "";
         this.atualizarTabela();
     }//GEN-LAST:event_jButtonComfirmarActionPerformed
@@ -319,15 +331,16 @@ public class TelaCadastrarMusica extends javax.swing.JFrame {
     private void jButtonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarActionPerformed
         int i = jTableMusicas.getSelectedRow();
         this.musica = listMusicasAtt.get(i);
+        this.path = this.musica.getCaminho();
         jTextFieldNome.setText(musica.getNome());
         jTextFieldGenero.setText(musica.getGenero());
-        
+
         /*populando a lista de artistas e marcando selecionado*/
         List<Artista> artistas = controle.buscarListaDeArtistas();
         DefaultComboBoxModel model = new DefaultComboBoxModel(artistas.toArray());
         jComboBoxArtistas.setModel(model);
-        for(int index =0;index < artistas.size(); index++){
-            if(artistas.get(index).getIdArtista() == musica.getArtista().getIdArtista()){
+        for (int index = 0; index < artistas.size(); index++) {
+            if (artistas.get(index).getIdArtista() == musica.getArtista().getIdArtista()) {
                 jComboBoxArtistas.setSelectedIndex(index);
             }
         }
@@ -336,16 +349,20 @@ public class TelaCadastrarMusica extends javax.swing.JFrame {
         List<Albun> albuns = controle.consultarAlbuns();
         DefaultComboBoxModel model0 = new DefaultComboBoxModel(albuns.toArray());
         jComboBoxAlbuns.setModel(model0);
-        for(int index =0;index < albuns.size(); index++){
-            if(albuns.get(index).getIdAlbun() == musica.getAlbun().getIdAlbun()){
+        for (int index = 0; index < albuns.size(); index++) {
+            if (albuns.get(index).getIdAlbun() == musica.getAlbun().getIdAlbun()) {
                 jComboBoxAlbuns.setSelectedIndex(index);
             }
         }
-        
-        
-        
+
         jTextFieldProcurar.setText(musica.getCaminho());
     }//GEN-LAST:event_jButtonEditarActionPerformed
+
+    private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
+        int i = jTableMusicas.getSelectedRow();
+        controle.excluirMusica(listMusicasAtt.get(i));
+        this.atualizarTabela();
+    }//GEN-LAST:event_jButtonExcluirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -353,10 +370,10 @@ public class TelaCadastrarMusica extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Arquivo;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButtonCancelar;
     private javax.swing.JButton jButtonComfirmar;
     private javax.swing.JButton jButtonEditar;
+    private javax.swing.JButton jButtonExcluir;
     private javax.swing.JButton jButtonProcurar;
     private javax.swing.JComboBox<String> jComboBoxAlbuns;
     private javax.swing.JComboBox<String> jComboBoxArtistas;

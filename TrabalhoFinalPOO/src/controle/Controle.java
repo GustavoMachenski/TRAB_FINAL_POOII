@@ -318,6 +318,26 @@ public class Controle {
         }
     }
 
+    public void atualizarMusica(int idmusica, String nome, String genero, String path, Artista artista, Albun albun) {
+        try {
+            MusicaDAO musicaDAO = new MusicaDAO();
+            Musica m =  new Musica(idmusica, nome, genero, path, artista, albun);
+            musicaDAO.alterar(m);
+        } catch (PersistenceException ex) {
+            Logger.getLogger(Controle.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void excluirMusica(Musica musica) {
+        try {
+            MusicaDAO musicaDAO = new MusicaDAO();
+            musicaDAO.excluir(musica);
+        } catch (PersistenceException ex) {
+            Logger.getLogger(Controle.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+
     
 
 }

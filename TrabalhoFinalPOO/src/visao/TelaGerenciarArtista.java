@@ -255,16 +255,13 @@ public class TelaGerenciarArtista extends javax.swing.JFrame {
     private void jButtonComfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonComfirmarActionPerformed
         if (artista.getIdArtista() == 0) {
             controle.inserirArtista(jTextFieldNome.getText(), jTextFieldGeneroMusical.getText());
-            jTextFieldNome.setText("");
-            jTextFieldGeneroMusical.setText("");
-            this.atualizarTabela();
         } else {
             controle.atulizarArtista(artista.getIdArtista(), jTextFieldNome.getText(), jTextFieldGeneroMusical.getText());
             this.artista = new Artista();
-            jTextFieldNome.setText("");
-            jTextFieldGeneroMusical.setText("");
-            this.atualizarTabela();
         }
+        jTextFieldNome.setText("");
+        jTextFieldGeneroMusical.setText("");
+        this.atualizarTabela();
 
     }//GEN-LAST:event_jButtonComfirmarActionPerformed
 
