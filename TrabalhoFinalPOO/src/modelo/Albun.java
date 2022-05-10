@@ -26,7 +26,7 @@ public class Albun {
     public Albun() {
         this.idAlbun      = 0;
         this.nome         = "";
-        this.artista      = new Artista() ;
+        this.artista      = new Artista();
         this.listaMusicas = new ArrayList<>();
     }
     

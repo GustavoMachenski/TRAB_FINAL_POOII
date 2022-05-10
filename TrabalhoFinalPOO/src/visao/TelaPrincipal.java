@@ -24,11 +24,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         initComponents();
         this.controle = controle;
         jMenuBar.add(jMenuPrincipal);
-        jMenuBar.add(jMenuAdministrador);
+        jMenuBar.add(jMenuAlbuns);
         if(controle.getUsuario().getPermissao().equals("usr")){
             this.usuario = controle.getUsuario();
             jTextField2.setText(usuario.getNome());
-            jMenuBar.remove(jMenuAdministrador);
+            jMenuBar.remove(jMenuAlbuns);
         } else {
             this.adm = controle.getAdiministrador();
             jTextField2.setText(adm.getNome());
@@ -64,12 +64,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItemSair = new javax.swing.JMenuItem();
-        jMenuAdministrador = new javax.swing.JMenu();
+        jMenuAlbuns = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItemCadastrarMusica = new javax.swing.JMenuItem();
-        jMenuAlbun = new javax.swing.JMenu();
-        jMenuItemCadastrarAlbun = new javax.swing.JMenuItem();
-        jMenuItemExcluirAlbun = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Player");
@@ -222,7 +220,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jMenuBar.add(jMenuPrincipal);
 
-        jMenuAdministrador.setText("Cadastros");
+        jMenuAlbuns.setText("Cadastros");
 
         jMenuItem5.setText("Música");
         jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
@@ -230,7 +228,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 jMenuItem5ActionPerformed(evt);
             }
         });
-        jMenuAdministrador.add(jMenuItem5);
+        jMenuAlbuns.add(jMenuItem5);
 
         jMenuItemCadastrarMusica.setText("Artista");
         jMenuItemCadastrarMusica.addActionListener(new java.awt.event.ActionListener() {
@@ -238,29 +236,17 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 jMenuItemCadastrarMusicaActionPerformed(evt);
             }
         });
-        jMenuAdministrador.add(jMenuItemCadastrarMusica);
+        jMenuAlbuns.add(jMenuItemCadastrarMusica);
 
-        jMenuAlbun.setText("Albun");
-
-        jMenuItemCadastrarAlbun.setText("Cadastrar");
-        jMenuItemCadastrarAlbun.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItem3.setText("Albuns");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemCadastrarAlbunActionPerformed(evt);
+                jMenuItem3ActionPerformed(evt);
             }
         });
-        jMenuAlbun.add(jMenuItemCadastrarAlbun);
+        jMenuAlbuns.add(jMenuItem3);
 
-        jMenuItemExcluirAlbun.setText("Excluir");
-        jMenuItemExcluirAlbun.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemExcluirAlbunActionPerformed(evt);
-            }
-        });
-        jMenuAlbun.add(jMenuItemExcluirAlbun);
-
-        jMenuAdministrador.add(jMenuAlbun);
-
-        jMenuBar.add(jMenuAdministrador);
+        jMenuBar.add(jMenuAlbuns);
 
         setJMenuBar(jMenuBar);
 
@@ -315,17 +301,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
         controle.abrirTelaCadastrarMusica();
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
-    private void jMenuItemExcluirAlbunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemExcluirAlbunActionPerformed
-        controle.abrirTelasExcluirAlbun();
-    }//GEN-LAST:event_jMenuItemExcluirAlbunActionPerformed
-
-    private void jMenuItemCadastrarAlbunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCadastrarAlbunActionPerformed
-        controle.abrirTelaAdicionarAlbun();
-    }//GEN-LAST:event_jMenuItemCadastrarAlbunActionPerformed
-
     private void jMenuItemCadastrarMusicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCadastrarMusicaActionPerformed
         controle.abrirTelaGerenciarArtista();
     }//GEN-LAST:event_jMenuItemCadastrarMusicaActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        controle.abrirTelaGerenciarAlbuns();
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -336,15 +318,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JList<String> jList1;
     private javax.swing.JList<String> jListMusicas;
-    private javax.swing.JMenu jMenuAdministrador;
-    private javax.swing.JMenu jMenuAlbun;
+    private javax.swing.JMenu jMenuAlbuns;
     private javax.swing.JMenuBar jMenuBar;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItemCadastrarAlbun;
     private javax.swing.JMenuItem jMenuItemCadastrarMusica;
-    private javax.swing.JMenuItem jMenuItemExcluirAlbun;
     private javax.swing.JMenuItem jMenuItemSair;
     private javax.swing.JMenu jMenuPrincipal;
     private javax.swing.JPanel jPanel1;

@@ -117,9 +117,9 @@ public class Controle {
         telas.get("telaprincipal").setVisible(false);
     }
     
-    public void abrirTelasExcluirAlbun() {
-        telas.put("telaexcluiralbun", fabrica.criarTela("telaexcluiralbun", this));
-        telas.get("telaexcluiralbun").setVisible(true);
+    public void abrirTelaGerenciarAlbuns() {
+        telas.put("telagerenciaralbuns", fabrica.criarTela("telagerenciaralbuns", this));
+        telas.get("telagerenciaralbuns").setVisible(true);
         telas.get("telaprincipal").setVisible(false);
     }
     
@@ -163,8 +163,8 @@ public class Controle {
         telas.get("telaprincipal").setVisible(true);
     }
     
-    public void fecharTelaExcluirAlbun() {
-        telas.get("telaexcluiralbun").dispose();
+     public void fecharTelaGerenciarAlbun() {
+        telas.get("telagerenciaralbuns").dispose();
         telas.get("telaprincipal").setVisible(true);
     }
     
@@ -256,13 +256,22 @@ public class Controle {
             AlbunDAO albundao = new AlbunDAO();
             Albun a = new Albun(nome, artista);
             albundao.inserir(a);
-            telas.get("telaadicionaralbun").dispose();
-            telas.get("telaprincipal").setVisible(true);
             JOptionPane.showMessageDialog(null,"Cadastrado com sucesso!!","Servidor",JOptionPane.PLAIN_MESSAGE);
         } catch (PersistenceException ex) {
             JOptionPane.showMessageDialog(null, "Erro", ex.getMessage(), JOptionPane.ERROR_MESSAGE);
         }
         
+    }
+    
+    public void atualizarAlbun(int id, String nome, Artista artista){
+        try {
+            Albun a = new Albun(id, nome, artista);
+            AlbunDAO albunDAO = new AlbunDAO();
+            albunDAO.alterar(a);
+            JOptionPane.showMessageDialog(null,"Albun editado!!","Servidor",JOptionPane.PLAIN_MESSAGE);
+        } catch (PersistenceException ex) {
+            Logger.getLogger(Controle.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public List<Albun> consultarAlbuns() {
@@ -280,8 +289,6 @@ public class Controle {
         try {
             AlbunDAO albunDAO = new AlbunDAO();
             albunDAO.excluir(albun);
-            telas.get("telaexcluiralbun").dispose();
-            telas.get("telaprincipal").setVisible(true);
             JOptionPane.showMessageDialog(null,"Albun excluido!!","Servidor",JOptionPane.PLAIN_MESSAGE);
         } catch (PersistenceException ex) {
             Logger.getLogger(Controle.class.getName()).log(Level.SEVERE, null, ex);

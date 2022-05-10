@@ -17,7 +17,7 @@ public class GeradorDeTelas {
 
     public JFrame criarTela(String nome, Controle controle) {
         JFrame frame;
-        if (nome.equals("telalogin")) {
+        if (nome.equals("telalogin")){
             frame = new TelaLogin(controle);
         } else if (nome.equals("telaautocadastro")) {
             frame = new TelaAutoCadastro(controle);
@@ -29,13 +29,8 @@ public class GeradorDeTelas {
             frame = new TelaGerenciarArtista(controle);
         } else if (nome.equals("telaplayer")) {
             frame = new TelaPlayer(controle);
-        } else if (nome.equals("telaadicionaralbun")) {
-            frame = new TelaAdicionarAlbun(controle);
-        } else if (nome.equals("telaexcluiralbun")) {
-            frame = new TelaExcluirAlbun(controle);
-        } else if (nome.equals("telaexcluirartista")) {
-            frame = new TelaExcluirAlbun(controle);
-
+        } else if (nome.equals("telagerenciaralbuns")) {
+            frame = new TelaGerenciarAlbuns(controle);
         } else {
             frame = new JFrame();
         }
