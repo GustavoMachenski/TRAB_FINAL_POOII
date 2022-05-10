@@ -12,6 +12,8 @@ public interface IMusicaDAO {
     
     public boolean excluir(Musica m) throws PersistenceException;
     
+    public boolean excluirPorIdArtista(int id) throws PersistenceException;
+    
     public Musica consultar(int id) throws PersistenceException;
     
     public List<Musica> consultarTodas() throws PersistenceException;
