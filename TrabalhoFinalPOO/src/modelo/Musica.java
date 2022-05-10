@@ -26,6 +26,15 @@ public class Musica {
         this.albun = albun;
     }
 
+    public Musica() {
+        this.idMusica = 0;
+        this.nome    = "";
+        this.genero  = "";
+        this.caminho = "";
+        this.artista = new Artista();
+        this.albun = new Albun();
+    }
+
     /**
      * @return the idMusica
      */
