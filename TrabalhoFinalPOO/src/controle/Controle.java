@@ -9,6 +9,7 @@ import DAO.AlbunDAO;
 import DAO.ArtistaDAO;
 import DAO.DAOgeral;
 import DAO.MusicaDAO;
+import DAO.PlaylistDAO;
 import DAO.UsuarioDAO;
 import exceptions.HashGenerationException;
 import exceptions.PersistenceException;
@@ -26,6 +27,7 @@ import javax.swing.JTextField;
 import modelo.Albun;
 import modelo.Artista;
 import modelo.Musica;
+import modelo.Playlist;
 import util.Digest;
 
 /**
@@ -123,8 +125,12 @@ public class Controle {
         telas.get("telaprincipal").setVisible(false);
     }
     
+    public void abrirTelaGerenciarPlaylist() {
+        telas.put("telagerenciarplaylist", fabrica.criarTela("telagerenciarplaylist", this));
+        telas.get("telagerenciarplaylist").setVisible(true);
+        telas.get("telaprincipal").setVisible(false);
+    }
     
-
     //fechamento de telas
     public void fecharTelaAutoCadastro() {
         telas.get("telaautocadastro").dispose();
@@ -170,6 +176,11 @@ public class Controle {
     
     public void fecharTelaExcluirArtista() {
         telas.get("telaexcluirartista").dispose();
+        telas.get("telaprincipal").setVisible(true);
+    }
+    
+    public void fecharTelaGerenciarPlaylist() {
+        telas.get("telagerenciarplaylist").dispose();
         telas.get("telaprincipal").setVisible(true);
     }
 
@@ -337,6 +348,30 @@ public class Controle {
         }
         
     }
+
+    public List<Playlist> consultarPlaylists(int id) {
+        try {
+            PlaylistDAO playlistDAO = new PlaylistDAO();
+            List<Playlist> playlists = playlistDAO.consultarPorIdUsuario(id);
+            return playlists;
+        } catch (PersistenceException ex) {
+            Logger.getLogger(Controle.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    public void excluirPlaylist(Playlist playlist) {
+        try {
+            PlaylistDAO playlistDAO = new PlaylistDAO();
+            playlistDAO.excluir(playlist);
+        } catch (PersistenceException ex) {
+            Logger.getLogger(Controle.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    
+
+    
 
     
 

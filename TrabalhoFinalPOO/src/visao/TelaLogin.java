@@ -105,6 +105,11 @@ public class TelaLogin extends javax.swing.JFrame {
                 jPasswordFieldSenhaActionPerformed(evt);
             }
         });
+        jPasswordFieldSenha.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jPasswordFieldSenhaKeyPressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -179,6 +184,10 @@ public class TelaLogin extends javax.swing.JFrame {
     private void jPasswordFieldSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordFieldSenhaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jPasswordFieldSenhaActionPerformed
+
+    private void jPasswordFieldSenhaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPasswordFieldSenhaKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPasswordFieldSenhaKeyPressed
 
     /**
      * @param args the command line arguments

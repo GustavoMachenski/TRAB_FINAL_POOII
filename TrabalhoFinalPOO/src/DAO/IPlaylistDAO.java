@@ -15,5 +15,7 @@ public interface IPlaylistDAO {
     
     public Playlist consultar(int id) throws PersistenceException;
     
+    public List<Playlist> consultarPorIdUsuario(int id) throws PersistenceException;
+    
     public List<Playlist> consultarTodas() throws PersistenceException;
 }

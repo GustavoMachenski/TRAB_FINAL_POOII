@@ -118,5 +118,29 @@ public class PlaylistDAO implements IPlaylistDAO{
             throw new PersistenceException("Banco de dados inacessível");
         }
     }
-    
+
+    @Override
+    public List<Playlist> consultarPorIdUsuario(int id) throws PersistenceException {
+        List<Playlist> playlists = new ArrayList<>();
+        try {
+            Conexao conexao = new Conexao();
+            Connection con = conexao.conectar();
+            PreparedStatement ps = con.prepareStatement("SELECT idplaylist, nome, idusuario FROM playlist WHERE idusuario = ?");
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                UsuarioDAO usuarioDAO = new UsuarioDAO();
+                Usuario u = usuarioDAO.consultar(rs.getInt("idusuario"));
+                Playlist p = new Playlist(rs.getInt("idplaylist"), rs.getString("nome"), u);
+                playlists.add(p);
+            }
+            rs.close();
+            ps.close();
+            con.close();
+            return playlists;
+        } catch (SQLException ex) {
+            throw new PersistenceException("Banco de dados inacessível");
+        }
+
+    }
 }
