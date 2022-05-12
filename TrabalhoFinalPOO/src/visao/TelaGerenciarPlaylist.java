@@ -78,6 +78,7 @@ public class TelaGerenciarPlaylist extends javax.swing.JFrame {
 
         DefaultTableModel modeloTabela1 = new DefaultTableModel(dados1, titulos);
         jTableMusicaPlaylist.setModel(modeloTabela1);
+        this.listMusicaPlaylist = musicasPlaylist;
 
     }
 
