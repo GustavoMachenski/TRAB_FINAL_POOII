@@ -16,5 +16,7 @@ public interface IMusicaDAO {
     
     public Musica consultar(int id) throws PersistenceException;
     
+    public List<Musica> consultarPorIdPlaylist(int id) throws PersistenceException;
+    
     public List<Musica> consultarTodas() throws PersistenceException;
 }

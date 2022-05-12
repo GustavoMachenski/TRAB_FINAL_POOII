@@ -82,12 +82,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jButtonTocarMusica = new javax.swing.JButton();
-        jButtonTocarTodas = new javax.swing.JButton();
+        jButtonEditar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTablePlaylists = new javax.swing.JTable();
         jButtonExcluir = new javax.swing.JButton();
         jButtonCriarPlaylist = new javax.swing.JButton();
         jLabelImformacao = new javax.swing.JLabel();
+        jButtonAtualizar = new javax.swing.JButton();
         jMenuBar = new javax.swing.JMenuBar();
         jMenuPrincipal = new javax.swing.JMenu();
         jMenuItemSair = new javax.swing.JMenuItem();
@@ -105,8 +106,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         jLabel1.setText("Playlists");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(141, 11, -1, -1));
 
         jButtonTocarMusica.setText("Tocar");
         jButtonTocarMusica.addActionListener(new java.awt.event.ActionListener() {
@@ -114,13 +118,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 jButtonTocarMusicaActionPerformed(evt);
             }
         });
+        jPanel1.add(jButtonTocarMusica, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, -1, -1));
 
-        jButtonTocarTodas.setText("Editar");
-        jButtonTocarTodas.addActionListener(new java.awt.event.ActionListener() {
+        jButtonEditar.setText("Editar");
+        jButtonEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonTocarTodasActionPerformed(evt);
+                jButtonEditarActionPerformed(evt);
             }
         });
+        jPanel1.add(jButtonEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 320, -1, -1));
 
         jTablePlaylists.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -132,12 +138,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTablePlaylists);
 
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 65, 359, 210));
+
         jButtonExcluir.setText("Excluir");
         jButtonExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonExcluirActionPerformed(evt);
             }
         });
+        jPanel1.add(jButtonExcluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 320, -1, -1));
 
         jButtonCriarPlaylist.setText("Criar Playlist");
         jButtonCriarPlaylist.addActionListener(new java.awt.event.ActionListener() {
@@ -145,51 +154,18 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 jButtonCriarPlaylistActionPerformed(evt);
             }
         });
+        jPanel1.add(jButtonCriarPlaylist, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 320, -1, -1));
 
         jLabelImformacao.setText("Imformacao");
+        jPanel1.add(jLabelImformacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 345, 112, -1));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(135, 135, 135))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabelImformacao, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jButtonTocarMusica)
-                                .addGap(13, 13, 13)
-                                .addComponent(jButtonTocarTodas)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButtonExcluir)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButtonCriarPlaylist)))
-                .addContainerGap(20, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonTocarMusica)
-                    .addComponent(jButtonTocarTodas)
-                    .addComponent(jButtonExcluir)
-                    .addComponent(jButtonCriarPlaylist))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabelImformacao)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        jButtonAtualizar.setText("Atualizar lista");
+        jButtonAtualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAtualizarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButtonAtualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 280, -1, -1));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -269,9 +245,17 @@ public class TelaPrincipal extends javax.swing.JFrame {
         controle.abrirTelaGerenciarAlbuns();
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
-    private void jButtonTocarTodasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTocarTodasActionPerformed
-        controle.abrirTelasPlayer();
-    }//GEN-LAST:event_jButtonTocarTodasActionPerformed
+    private void jButtonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarActionPerformed
+        int id;
+        if(this.usuario.getIdUsuario()==0){
+            id = this.adm.getIdUsuario();
+        }else{
+            id = this.usuario.getIdUsuario();
+        }
+        controle.setPlayslist(this.listPlaylists.get(jTablePlaylists.getSelectedRow()));
+        controle.setId(id);
+        controle.abrirTelaGerenciarPlaylist();
+    }//GEN-LAST:event_jButtonEditarActionPerformed
 
     private void jButtonTocarMusicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTocarMusicaActionPerformed
         controle.abrirTelasPlayer();
@@ -284,15 +268,27 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonExcluirActionPerformed
 
     private void jButtonCriarPlaylistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCriarPlaylistActionPerformed
-        controle.abrirTelaGerenciarPlaylist();
+        int id;
+        if(this.usuario.getIdUsuario()==0){
+            id = this.adm.getIdUsuario();
+        }else{
+            id = this.usuario.getIdUsuario();
+        }
+        controle.setId(id);
+        controle.abrirTelaCadastrarPlaylist();
     }//GEN-LAST:event_jButtonCriarPlaylistActionPerformed
+
+    private void jButtonAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAtualizarActionPerformed
+        this.atualizarTabela();
+    }//GEN-LAST:event_jButtonAtualizarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonAtualizar;
     private javax.swing.JButton jButtonCriarPlaylist;
+    private javax.swing.JButton jButtonEditar;
     private javax.swing.JButton jButtonExcluir;
     private javax.swing.JButton jButtonTocarMusica;
-    private javax.swing.JButton jButtonTocarTodas;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelImformacao;
     private javax.swing.JMenu jMenuAlbuns;
