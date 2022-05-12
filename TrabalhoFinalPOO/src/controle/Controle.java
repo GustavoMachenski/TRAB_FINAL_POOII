@@ -40,7 +40,9 @@ public class Controle {
     private Map<String, JFrame> telas;
     protected Usuario usuario;
     private Administrador adm;
-    DAOgeral daogeral = new DAOgeral();
+    private int id = 0;
+    private Playlist playlist;
+    
 
     // construtor
     public Controle() {
@@ -131,6 +133,12 @@ public class Controle {
         telas.get("telaprincipal").setVisible(false);
     }
     
+    public void abrirTelaCadastrarPlaylist() {
+        telas.put("telacadastrarplaylist", fabrica.criarTela("telacadastrarplaylist", this));
+        telas.get("telacadastrarplaylist").setVisible(true);
+        telas.get("telaprincipal").setVisible(false);
+    }
+    
     //fechamento de telas
     public void fecharTelaAutoCadastro() {
         telas.get("telaautocadastro").dispose();
@@ -182,6 +190,12 @@ public class Controle {
     public void fecharTelaGerenciarPlaylist() {
         telas.get("telagerenciarplaylist").dispose();
         telas.get("telaprincipal").setVisible(true);
+    }
+    
+    public void fecharTelaCadastrarPlaylist() {
+        telas.get("telacadastrarplaylist").dispose();
+        telas.get("telaprincipal").setVisible(true);
+        this.id = 0;
     }
 
     // validações e outros
@@ -368,6 +382,48 @@ public class Controle {
             Logger.getLogger(Controle.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+    public int getId() {
+        return this.id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void cadastrarPlaylist(String nome, int id) {
+        try {
+            UsuarioDAO usuarioDAO = new UsuarioDAO();
+            Usuario u = usuarioDAO.consultar(id);
+            Playlist p = new Playlist(nome, u);
+            PlaylistDAO playlistDAO = new PlaylistDAO();
+            playlistDAO.inserir(p);
+            fecharTelaCadastrarPlaylist();
+        } catch (PersistenceException ex) {
+            Logger.getLogger(Controle.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void setPlayslist(Playlist playlist) {
+       this.playlist = playlist;
+    }
+
+    public Playlist getPlaylist() {
+        return this.playlist;
+    }
+
+    public List<Musica> buscarMusicasPlaylist(int id) {
+        try {
+            MusicaDAO musicaDAO = new MusicaDAO();
+            List<Musica> musicas = musicaDAO.consultarPorIdPlaylist(id);
+            return musicas;
+        } catch (PersistenceException ex) {
+            Logger.getLogger(Controle.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    
 
     
 

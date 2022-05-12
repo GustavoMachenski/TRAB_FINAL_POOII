@@ -147,5 +147,31 @@ public class MusicaDAO implements IMusicaDAO{
             throw new PersistenceException("Banco de dados inacessível");
         }
     }
+
+    @Override
+    public List<Musica> consultarPorIdPlaylist(int id) throws PersistenceException {
+        List<Musica> musicas = new ArrayList<>();
+        try {
+            Conexao conexao = new Conexao();
+            Connection con = conexao.conectar();
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM musica INNER JOIN playlist_musica ON musica.idmusica = playlist_musica.idmusica WHERE playlist_musica.idplaylist = ?");
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                ArtistaDAO artistaDAO = new ArtistaDAO(); 
+                Artista a = artistaDAO.consultar(rs.getInt("idartista"));
+                AlbunDAO albunDAO = new AlbunDAO(); 
+                Albun ab = albunDAO.consultar(rs.getInt("idalbun"));
+                Musica m = new Musica(rs.getInt("idmusica"), rs.getString("nome"), rs.getString("genero"), rs.getString("caminho"), a, ab);
+                musicas.add(m);
+            }
+            rs.close();
+            ps.close();
+            con.close();
+            return musicas;
+        } catch (SQLException ex) {
+            throw new PersistenceException("Banco de dados inacessível");
+        }
+    }
     
 }
