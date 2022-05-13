@@ -7,7 +7,6 @@ package controle;
 
 import DAO.AlbunDAO;
 import DAO.ArtistaDAO;
-import DAO.DAOgeral;
 import DAO.MusicaDAO;
 import DAO.PlaylistDAO;
 import DAO.UsuarioDAO;
@@ -23,7 +22,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
+import javax.swing.Timer;
 import modelo.Albun;
 import modelo.Artista;
 import modelo.Musica;
@@ -63,6 +62,7 @@ public class Controle {
 
         Controle controle = new Controle();
         controle.iniciarAplicacao();
+        
     }
 
     // abertura de telas
@@ -465,4 +465,5 @@ public class Controle {
             Logger.getLogger(Controle.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
 }

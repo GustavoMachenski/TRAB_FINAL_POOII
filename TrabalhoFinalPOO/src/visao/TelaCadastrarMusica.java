@@ -341,7 +341,7 @@ public class TelaCadastrarMusica extends javax.swing.JFrame {
             this.file = fc.getSelectedFile();
             jTextFieldProcurar.setText(file.getPath());
             //this.path = file.getPath();
-            this.path = "/musicas/"+ file.getName();
+            this.path = "C:\\Users\\Gustavo\\Documents\\GitHub\\TRAB_FINAL_POOII\\TrabalhoFinalPOO\\src\\musicas/" + file.getName();
             
         
     }//GEN-LAST:event_jButtonProcurarActionPerformed

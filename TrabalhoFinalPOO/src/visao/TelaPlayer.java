@@ -6,15 +6,15 @@
 package visao;
 
 import controle.Controle;
-import java.io.InputStream;
-import modelo.Musica;
-import java.util.ArrayList;
-import java.util.List;
+import java.io.IOException;
+import java.util.TimerTask;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javazoom.jl.decoder.JavaLayerException;
-import javazoom.jl.player.Player;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+import javax.swing.Timer;
 import modelo.Playlist;
+import util.ClassPlayer;
 
 /**
  *
@@ -22,16 +22,13 @@ import modelo.Playlist;
  */
 public class TelaPlayer extends javax.swing.JFrame {
     Controle controle;
-    private Playlist playlist;
-    private Player ply;
-    private boolean estaExecutando;
-    private int cont =0;
-    private List<Musica> musicasList;
-    //private String[] musicas = new String [5];
+    private final Playlist playlist;
+    ClassPlayer player;
     
-    //List<Musica> listmusicas = new ArrayList<>();
+    
     /**
      * Creates new form TelaPlayer
+     * @param controle
      */
     public TelaPlayer(Controle controle) {
         initComponents();
@@ -40,23 +37,11 @@ public class TelaPlayer extends javax.swing.JFrame {
         jButtonAvancar.setEnabled(false);
         jButtonVoltar.setEnabled(false);
         this.playlist = controle.getPlaylist();
-        this.musicasList = controle.buscarMusicasPlaylist(this.playlist.getIdPlaylist());
-        jLabelMusica.setText(musicasList.get(cont).getNome());
-       
-        //controle.getListMusica(); vai pegar a lista enviada da tela principal usuario para o controle e puxar para tocar(recebe retorno list musica)
+        player = new ClassPlayer(controle.buscarMusicasPlaylist(this.playlist.getIdPlaylist()));
+        jLabelMusica.setText(player.getMusicName());
     }
     
-    class Musicas extends Thread {
-        public void run(){
-            try {
-                InputStream input = this.getClass().getResourceAsStream(musicasList.get(cont).getCaminho());
-                ply = new Player(input);
-                ply.play();
-            } catch (JavaLayerException ex) {
-                Logger.getLogger(TelaPlayer.class.getName()).log(Level.SEVERE, null, ex);
-            }
-       }
-    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -175,52 +160,40 @@ public class TelaPlayer extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonPlayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPlayActionPerformed
-        Musicas mp3 = new Musicas();
-        mp3.start();
-        jButtonPlay.setEnabled(false);
-        jButtonPause.setEnabled(true);
-        jButtonAvancar.setEnabled(true);
-        
+        try {
+            player.playMusic();
+            jButtonPlay.setEnabled(false);
+            jButtonPause.setEnabled(true);
+            jButtonAvancar.setEnabled(true);
+            jButtonVoltar.setEnabled(true);
+            
+        } catch (UnsupportedAudioFileException | LineUnavailableException | IOException ex) {
+            Logger.getLogger(TelaPlayer.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }//GEN-LAST:event_jButtonPlayActionPerformed
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         controle.fecharTelaPlayer();
+        player.exit();
     }//GEN-LAST:event_formWindowClosed
 
     private void jButtonPauseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPauseActionPerformed
-        ply.close();
-        estaExecutando = false;
+        player.pauseMusic();
         jButtonPlay.setEnabled(true);
     }//GEN-LAST:event_jButtonPauseActionPerformed
 
     private void jButtonVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVoltarActionPerformed
-        cont--;
-        jLabelMusica.setText(musicasList.get(cont).getNome());
-        if(estaExecutando = true){
-            ply.close();
-            Musicas mp3 = new Musicas();
-            mp3.start();
-        }
-        if(cont < musicasList.size()-1){
-            jButtonAvancar.setEnabled(true);
-        }
-        if(cont == 0){
-            jButtonVoltar.setEnabled(false);
-        }
+        player.returnMusic();
+        jLabelMusica.setText(player.getMusicName());
+        jButtonPlay.setEnabled(false);
+  
     }//GEN-LAST:event_jButtonVoltarActionPerformed
 
     private void jButtonAvancarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAvancarActionPerformed
-        cont++;
-        jButtonVoltar.setEnabled(true);
-       jLabelMusica.setText(musicasList.get(cont).getNome());
-        if(estaExecutando = true){
-            ply.close();
-            Musicas mp3 = new Musicas();
-            mp3.start();
-        }
-        if(cont == musicasList.size()-1){
-            jButtonAvancar.setEnabled(false);
-        }
+        player.passMusic();
+        jLabelMusica.setText(player.getMusicName());
+        jButtonPlay.setEnabled(false);
     }//GEN-LAST:event_jButtonAvancarActionPerformed
 
     /**
