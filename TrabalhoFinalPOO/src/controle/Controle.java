@@ -196,6 +196,7 @@ public class Controle {
         telas.get("telacadastrarplaylist").dispose();
         telas.get("telaprincipal").setVisible(true);
         this.id = 0;
+        
     }
 
     // validações e outros
@@ -423,12 +424,35 @@ public class Controle {
         return null;
     }
 
-    
+    public void vincularMusicaNaPlaylist(Musica m, Playlist p) {
+        try {
+            MusicaDAO musicaDAO = new MusicaDAO();
+            musicaDAO.vincularMusicaPlaylist(m, p);
+        } catch (PersistenceException ex) {
+            Logger.getLogger(Controle.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     
 
+    public void removerMusicaDaPlaylist(Musica m, Playlist p) {
+        try {
+            MusicaDAO musicaDAO = new MusicaDAO();
+            musicaDAO.removerMusicaPlaylist(m, p);
+        } catch (PersistenceException ex) {
+            Logger.getLogger(Controle.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     
 
-    
-
+    public List buscarListaDeMusicasExcetoPlaylist(Playlist playlist) {
+        try {
+            MusicaDAO musicaDAO = new MusicaDAO();
+            List<Musica> musicas = musicaDAO.buscarListaDeMusicasExcetoPlaylist(playlist);
+            return musicas;
+        } catch (PersistenceException ex) {
+            Logger.getLogger(Controle.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
 }

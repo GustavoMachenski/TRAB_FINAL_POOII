@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package visao;
 
 import controle.Controle;
@@ -10,6 +6,7 @@ import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import modelo.Musica;
 import modelo.Playlist;
+import util.ListaDupla;
 
 /**
  *
@@ -20,8 +17,10 @@ public class TelaGerenciarPlaylist extends javax.swing.JFrame {
     private Controle controle;
     private Playlist playlist;
     private int id;
-    List<Musica> listMusicaPlaylist;
-    List<Musica> listMusicas;
+    private ListaDupla<Musica> listaDupla;
+    
+    //List<Musica> listMusicaPlaylist;
+    //List<Musica> listMusicas;
 
     /**
      * Creates new form TelaGerenciarPlaylist
@@ -31,43 +30,35 @@ public class TelaGerenciarPlaylist extends javax.swing.JFrame {
         this.controle = controle;
         this.id = controle.getId();
         this.playlist = controle.getPlaylist();
+        listaDupla = new ListaDupla(controle.buscarMusicasPlaylist(this.playlist.getIdPlaylist()),controle.buscarListaDeMusicasExcetoPlaylist(this.playlist));
         atualizarTabela();
+        jTextFieldNome.setText(this.playlist.getNome());
 
     }
+    
+    //select * from musica where id not in (select id_musica from playlistmusica where id_playlist == ?)
+    //select * from musica where idmusica not in (select idmusica from playlist_musica where idplaylist = ?)
 
     public void atualizarTabela() {
 
+        
+        //modelar uma classe que tem -- ListaDupla
+        // uma lista de todas as musicas da plataforma
+        // uma lista com as músicas da playlist
+        
+        //inserirMusicaNaPlayList
+          //insere em uma e remove da outra
+        
+        //removerMusicaDaPlayList
+          //insere em uma e remove da outra
+        
         String titulos[] = new String[4];
         titulos[0] = "Nome";
         titulos[1] = "Genero Principal";
         titulos[2] = "Artista";
         titulos[3] = "Albun";
 
-        List<Musica> musicas = controle.buscarListaDeMusicas();
-        List<Musica> musicasPlaylist = controle.buscarMusicasPlaylist(playlist.getIdPlaylist());
-        this.listMusicaPlaylist = musicasPlaylist;
-
-        for (int i = 0; i < musicas.size(); i++) {
-            for (int i1 = 0; i1 < musicasPlaylist.size(); i1++) {
-                if (musicas.get(i).getIdMusica() == musicasPlaylist.get(i1).getIdMusica()) {
-                    musicas.remove(musicas.get(i));
-                }
-            }
-        }
-
-        String dados[][] = new String[musicas.size()][4];
-        for (int i = 0; i < musicas.size(); i++) {
-            dados[i][0] = musicas.get(i).getNome();
-            dados[i][1] = musicas.get(i).getGenero();
-            dados[i][2] = musicas.get(i).getArtista().getNome();
-            dados[i][3] = musicas.get(i).getAlbun().getNome();
-        }
-
-        DefaultTableModel modeloTabela = new DefaultTableModel(dados, titulos);
-        jTableMusicas.setModel(modeloTabela);
-
-        this.listMusicas = musicas;
-
+        List<Musica> musicasPlaylist = listaDupla.getListA();
         String dados1[][] = new String[musicasPlaylist.size()][4];
         for (int i = 0; i < musicasPlaylist.size(); i++) {
             dados1[i][0] = musicasPlaylist.get(i).getNome();
@@ -75,11 +66,19 @@ public class TelaGerenciarPlaylist extends javax.swing.JFrame {
             dados1[i][2] = musicasPlaylist.get(i).getArtista().getNome();
             dados1[i][3] = musicasPlaylist.get(i).getAlbun().getNome();
         }
-
         DefaultTableModel modeloTabela1 = new DefaultTableModel(dados1, titulos);
         jTableMusicaPlaylist.setModel(modeloTabela1);
-        this.listMusicaPlaylist = musicasPlaylist;
-
+        
+        List<Musica> musicas = this.listaDupla.getListB();
+        String dados[][] = new String[musicas.size()][4];
+        for (int i = 0; i < musicas.size(); i++) {
+            dados[i][0] = musicas.get(i).getNome();
+            dados[i][1] = musicas.get(i).getGenero();
+            dados[i][2] = musicas.get(i).getArtista().getNome();
+            dados[i][3] = musicas.get(i).getAlbun().getNome();
+        }
+        DefaultTableModel modeloTabela = new DefaultTableModel(dados, titulos);
+        jTableMusicas.setModel(modeloTabela);
     }
 
     /**
@@ -96,6 +95,14 @@ public class TelaGerenciarPlaylist extends javax.swing.JFrame {
         jTableMusicaPlaylist = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTableMusicas = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jTextFieldNome = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        jButtonAdicionar = new javax.swing.JButton();
+        jButtonRemover = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -120,7 +127,7 @@ public class TelaGerenciarPlaylist extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTableMusicaPlaylist);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, 330, -1));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, 330, 260));
 
         jTableMusicas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -135,9 +142,47 @@ public class TelaGerenciarPlaylist extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(jTableMusicas);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 190, 340, -1));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 170, 340, 260));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 780, 760));
+        jLabel1.setText("Musicas da playlist");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 130, -1, -1));
+
+        jLabel2.setText("Musicas");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 130, -1, -1));
+
+        jLabel3.setText("Nome:");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, -1, -1));
+
+        jTextFieldNome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldNomeActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jTextFieldNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 60, 350, -1));
+
+        jButton1.setText("Alterar");
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 60, -1, -1));
+
+        jButtonAdicionar.setText("Adicionar");
+        jButtonAdicionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAdicionarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButtonAdicionar, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 440, -1, -1));
+
+        jButtonRemover.setText("Remover");
+        jButtonRemover.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRemoverActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButtonRemover, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 440, -1, -1));
+
+        jLabel4.setText("Gerencie sua playlist");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 10, -1, -1));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 780, 490));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -146,12 +191,44 @@ public class TelaGerenciarPlaylist extends javax.swing.JFrame {
         controle.fecharTelaGerenciarPlaylist();
     }//GEN-LAST:event_formWindowClosed
 
+    private void jTextFieldNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNomeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldNomeActionPerformed
+
+    private void jButtonAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdicionarActionPerformed
+        
+        Musica selecionada = listaDupla.getListB().get(jTableMusicas.getSelectedRow());
+        listaDupla.transferirObject(selecionada);
+        //inserir na tabela de relacionamento
+        controle.vincularMusicaNaPlaylist(selecionada, this.playlist);
+        //acionar o controlador conforme a necessidade (insert ou delete)
+        
+        //controle.adicionarMusicaPlaylist(listMusicas.get(jTableMusicas.getSelectedRow()), this.playlist);
+        this.atualizarTabela();
+    }//GEN-LAST:event_jButtonAdicionarActionPerformed
+
+    private void jButtonRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoverActionPerformed
+        Musica selecionada = listaDupla.getListA().get(jTableMusicaPlaylist.getSelectedRow());
+        listaDupla.transferirObject(selecionada);
+        controle.removerMusicaDaPlaylist(selecionada, this.playlist);
+        
+        this.atualizarTabela();
+    }//GEN-LAST:event_jButtonRemoverActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButtonAdicionar;
+    private javax.swing.JButton jButtonRemover;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTableMusicaPlaylist;
     private javax.swing.JTable jTableMusicas;
+    private javax.swing.JTextField jTextFieldNome;
     // End of variables declaration//GEN-END:variables
 }

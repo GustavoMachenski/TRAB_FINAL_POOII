@@ -3,6 +3,7 @@ package DAO;
 import exceptions.PersistenceException;
 import java.util.List;
 import modelo.Musica;
+import modelo.Playlist;
 
 public interface IMusicaDAO {
     
@@ -19,4 +20,10 @@ public interface IMusicaDAO {
     public List<Musica> consultarPorIdPlaylist(int id) throws PersistenceException;
     
     public List<Musica> consultarTodas() throws PersistenceException;
+    
+    public void vincularMusicaPlaylist(Musica m, Playlist p) throws PersistenceException;
+    
+    public List<Musica> buscarListaDeMusicasExcetoPlaylist(Playlist p) throws PersistenceException;
+    
+    public void removerMusicaPlaylist(Musica m, Playlist p) throws PersistenceException;
 }
