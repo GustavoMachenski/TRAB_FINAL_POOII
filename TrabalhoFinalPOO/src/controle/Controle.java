@@ -455,4 +455,14 @@ public class Controle {
         }
         return null;
     }
+
+    public void alterarNomeDaPlaylist(Playlist playlist) {
+        try {
+            PlaylistDAO playlistDAO = new PlaylistDAO();
+            playlistDAO.alterar(playlist);
+            JOptionPane.showMessageDialog(null,"Nome editado!!","Servidor",JOptionPane.INFORMATION_MESSAGE);
+        } catch (PersistenceException ex) {
+            Logger.getLogger(Controle.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }

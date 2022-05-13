@@ -45,6 +45,7 @@ public class PlaylistDAO implements IPlaylistDAO{
             PreparedStatement ps
                     = con.prepareStatement("UPDATE playlist SET nome=? WHERE idplaylist=?");
             ps.setString(1, p.getNome());
+            ps.setInt(2, p.getIdPlaylist());
             ps.execute();
             ps.close();
             con.close();

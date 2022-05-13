@@ -161,6 +161,11 @@ public class TelaGerenciarPlaylist extends javax.swing.JFrame {
         jPanel1.add(jTextFieldNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 60, 350, -1));
 
         jButton1.setText("Alterar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 60, -1, -1));
 
         jButtonAdicionar.setText("Adicionar");
@@ -214,6 +219,11 @@ public class TelaGerenciarPlaylist extends javax.swing.JFrame {
         
         this.atualizarTabela();
     }//GEN-LAST:event_jButtonRemoverActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        this.playlist.setNome(jTextFieldNome.getText());
+        controle.alterarNomeDaPlaylist(playlist);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
