@@ -28,7 +28,7 @@ public class Upload {
     
     private void copiar(InputStream origem, OutputStream destino) {
 	int bite = 0;
-	byte[] tamanhoMaximo = new byte[1024 * 10000]; // 8KB
+	byte[] tamanhoMaximo = new byte[1024 * 10000];
 	try {
 		// enquanto bytes forem sendo lidos
 		while((bite = origem.read(tamanhoMaximo)) >= 0) {
