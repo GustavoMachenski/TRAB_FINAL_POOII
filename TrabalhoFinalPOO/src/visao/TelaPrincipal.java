@@ -88,7 +88,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jButtonExcluir = new javax.swing.JButton();
         jButtonCriarPlaylist = new javax.swing.JButton();
         jLabelImformacao = new javax.swing.JLabel();
-        jButtonAtualizar = new javax.swing.JButton();
         jMenuBar = new javax.swing.JMenuBar();
         jMenuPrincipal = new javax.swing.JMenu();
         jMenuItemSair = new javax.swing.JMenuItem();
@@ -158,14 +157,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jLabelImformacao.setText("Imformacao");
         jPanel1.add(jLabelImformacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 345, 112, -1));
-
-        jButtonAtualizar.setText("Atualizar lista");
-        jButtonAtualizar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAtualizarActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButtonAtualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 280, -1, -1));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -278,13 +269,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
         controle.abrirTelaCadastrarPlaylist();
     }//GEN-LAST:event_jButtonCriarPlaylistActionPerformed
 
-    private void jButtonAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAtualizarActionPerformed
+    @Override
+    public void setVisible(boolean b) {
+        super.setVisible(b);
         this.atualizarTabela();
-    }//GEN-LAST:event_jButtonAtualizarActionPerformed
+    }
 
-
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonAtualizar;
     private javax.swing.JButton jButtonCriarPlaylist;
     private javax.swing.JButton jButtonEditar;
     private javax.swing.JButton jButtonExcluir;

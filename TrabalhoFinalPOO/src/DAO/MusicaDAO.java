@@ -8,9 +8,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import modelo.Albun;
 import modelo.Artista;
 import modelo.Musica;
+import modelo.Playlist;
 
 public class MusicaDAO implements IMusicaDAO{
 
@@ -171,6 +174,65 @@ public class MusicaDAO implements IMusicaDAO{
             return musicas;
         } catch (SQLException ex) {
             throw new PersistenceException("Banco de dados inacessível");
+        }
+    }
+
+    @Override
+    public void vincularMusicaPlaylist(Musica m, Playlist p) throws PersistenceException {
+        try {
+            Conexao conexao = new Conexao();
+            Connection con = conexao.conectar();
+            PreparedStatement ps = con.prepareStatement("INSERT INTO playlist_musica (idplaylist, idmusica) VALUES (?,?)");
+            ps.setInt(1, p.getIdPlaylist());
+            ps.setInt(2, m.getIdMusica());
+            ps.execute();
+            ps.close();
+            con.close();
+        } catch (SQLException ex) {
+            throw new PersistenceException("Banco de dados inacessível");
+        }
+    }
+
+    @Override
+    public List<Musica> buscarListaDeMusicasExcetoPlaylist(Playlist p) throws PersistenceException {
+        List<Musica> musicas = new ArrayList<>();
+        try {
+            Conexao conexao = new Conexao();
+            Connection con = conexao.conectar();
+            PreparedStatement ps = con.prepareStatement("select * from musica where idmusica not in (select idmusica from playlist_musica where idplaylist = ?)");
+            ps.setInt(1, p.getIdPlaylist());
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                ArtistaDAO artistaDAO = new ArtistaDAO(); 
+                Artista a = artistaDAO.consultar(rs.getInt("idartista"));
+                AlbunDAO albunDAO = new AlbunDAO(); 
+                Albun ab = albunDAO.consultar(rs.getInt("idalbun"));
+                Musica m = new Musica(rs.getInt("idmusica"), rs.getString("nome"), rs.getString("genero"), rs.getString("caminho"), a, ab);
+                musicas.add(m);
+            }
+            rs.close();
+            ps.close();
+            con.close();
+            return musicas;
+
+        } catch (SQLException ex) {
+            throw new PersistenceException("Banco de dados inacessível");
+        }
+    }
+
+    @Override
+    public void removerMusicaPlaylist(Musica m, Playlist p) throws PersistenceException {
+        try {
+            Conexao conexao = new Conexao();
+            Connection con = conexao.conectar();
+            PreparedStatement ps = con.prepareStatement("DELETE FROM playlist_musica WHERE idplaylist = ? AND idmusica = ?");
+            ps.setInt(1, p.getIdPlaylist());
+            ps.setInt(2, m.getIdMusica());
+            ps.execute();
+            ps.close();
+            con.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(MusicaDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
