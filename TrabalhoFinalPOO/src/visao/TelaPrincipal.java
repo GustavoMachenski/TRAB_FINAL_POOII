@@ -249,6 +249,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonEditarActionPerformed
 
     private void jButtonTocarMusicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTocarMusicaActionPerformed
+        controle.setPlayslist(this.listPlaylists.get(jTablePlaylists.getSelectedRow()));
         controle.abrirTelasPlayer();
     }//GEN-LAST:event_jButtonTocarMusicaActionPerformed
 

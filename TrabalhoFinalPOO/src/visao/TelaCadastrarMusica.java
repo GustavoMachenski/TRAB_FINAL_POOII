@@ -7,13 +7,20 @@ package visao;
 
 import controle.Controle;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFileChooser;
 import javax.swing.table.DefaultTableModel;
 import modelo.Albun;
 import modelo.Artista;
 import modelo.Musica;
+import util.Upload;
 
 /**
  *
@@ -25,6 +32,7 @@ public class TelaCadastrarMusica extends javax.swing.JFrame {
     List<Musica> listMusicasAtt;
     String path;
     Musica musica = new Musica();
+    File file;
 
     /**
      * Creates new form TelaCadastrarMusica
@@ -302,16 +310,44 @@ public class TelaCadastrarMusica extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBoxArtistasActionPerformed
 
     private void jButtonProcurarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonProcurarActionPerformed
-        JFileChooser fc = new JFileChooser();
-        fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
-        fc.showOpenDialog(this);
-        File f = fc.getSelectedFile();
-        jTextFieldProcurar.setText(f.getPath());
-        this.path = f.getPath();
-
+            /*JFileChooser fc = new JFileChooser();
+            fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
+            fc.showOpenDialog(this);
+            File f = fc.getSelectedFile();
+            jTextFieldProcurar.setText(f.getPath());
+            this.path = f.getPath();
+            *//*
+            InputStream inputStream = null;
+            
+            JFileChooser fc = new JFileChooser();
+            fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
+            fc.showOpenDialog(this);
+            File file = fc.getSelectedFile();
+            inputStream = new FileInputStream(file);
+            jTextFieldProcurar.setText(file.getPath());
+            
+            Upload upload = new Upload();
+            upload.upload("C:\\Users\\Gustavo\\Documents\\NetBeansProjects\\teste\\src\\mp3", file.getName(), inputStream);
+            } catch (FileNotFoundException ex) {
+            Logger.getLogger(TelaCadastrarMusica.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            }
+            */
+            
+            JFileChooser fc = new JFileChooser();
+            fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
+            fc.showOpenDialog(this);
+            this.file = fc.getSelectedFile();
+            jTextFieldProcurar.setText(file.getPath());
+            //this.path = file.getPath();
+            this.path = "/musicas/"+ file.getName();
+            
+        
     }//GEN-LAST:event_jButtonProcurarActionPerformed
 
     private void jButtonComfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonComfirmarActionPerformed
+        InputStream inputStream = null;
         Artista artista = (Artista) jComboBoxArtistas.getSelectedItem();
         Albun albun = (Albun) jComboBoxAlbuns.getSelectedItem();
         if (this.musica.getIdMusica() == 0) {
@@ -321,6 +357,21 @@ public class TelaCadastrarMusica extends javax.swing.JFrame {
             controle.atualizarMusica(musica.getIdMusica(), jTextFieldNome.getText(), jTextFieldGenero.getText(), this.path, artista, albun);
             this.musica = new Musica();
         }
+        
+        try {
+            inputStream = new FileInputStream(file);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(TelaCadastrarMusica.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        Upload upload = new Upload();
+        try {
+            upload.upload("C:\\Users\\Gustavo\\Documents\\GitHub\\TRAB_FINAL_POOII\\TrabalhoFinalPOO\\src\\musicas", file.getName(), inputStream);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(TelaCadastrarMusica.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        
         jTextFieldNome.setText("");
         jTextFieldGenero.setText("");
         jTextFieldProcurar.setText("");
