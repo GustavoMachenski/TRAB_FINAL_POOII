@@ -9,10 +9,12 @@ import java.util.logging.Logger;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineEvent;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JFrame;
 import modelo.Musica;
+import visao.TelaPlayer;
 
 public class ClassPlayer {
 
@@ -22,9 +24,10 @@ public class ClassPlayer {
     long clipTimePosition = 0;
     boolean repetirPlaylist = false;
     boolean repetirMusica = false;
-    JFrame frame;
+    boolean pause = false;
+    TelaPlayer frame;
 
-    public ClassPlayer(List<Musica> musicas, JFrame frame) {
+    public ClassPlayer(List<Musica> musicas, TelaPlayer frame) {
         this.musicas = musicas;
         this.frame = frame;
     }
@@ -67,89 +70,57 @@ public class ClassPlayer {
             clip.start();
             clipTimePosition = 0;
         }
-
+        this.clip.addLineListener(event -> {
+                if ((event.getType() == LineEvent.Type.STOP) && (!this.pause)) {
+                  this.passMusic();
+                }
+             });
+        this.pause=false;
+        frame.setNomeMusica(getMusicName());
     }
 
     public void pauseMusic() {
         clipTimePosition = clip.getMicrosecondPosition();
+        this.pause = true;
         clip.stop();
     }
 
     public void passMusic() {
-        try {
-
-            if (this.repetirMusica) {
+        if (this.repetirMusica) {
+            this.clip.stop();
+        } else {
+            cont++;
+            if ((cont > musicas.size() - 1) & (this.repetirPlaylist)) {
+                cont = 0;
                 this.clip.stop();
-                playMusic();
             } else {
-                cont++;
-                if ((cont > musicas.size() - 1) & (this.repetirPlaylist)) {
+                if ((cont > musicas.size() - 1) & (!this.repetirPlaylist)) {
                     cont = 0;
-                    this.clip.stop();
-                    playMusic();
+                    this.pause=true;
+                    this.frame.fecharJanela();
                 } else {
-                    if ((cont > musicas.size() - 1) & (!this.repetirPlaylist)) {
-                        cont = 0;
-                        this.frame.dispose();
-
-                    } else {
-                        this.clip.stop();
-                        playMusic();
-                    }
+                    this.clip.stop();
                 }
             }
-        } catch (UnsupportedAudioFileException ex) {
-            Logger.getLogger(ClassPlayer.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (LineUnavailableException ex) {
-            Logger.getLogger(ClassPlayer.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(ClassPlayer.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     public void returnMusic() {
-        try {
-            if (this.repetirMusica) {
+        if (this.repetirMusica) {
+            this.clip.stop();
+        } else {
+            cont--;
+            if ((cont < 0) & (this.repetirPlaylist)) {
+                cont = musicas.size() - 1;
                 this.clip.stop();
-                playMusic();
             } else {
-                cont--;
-                if ((cont < 0) & (this.repetirPlaylist)) {
+                if ((cont < 0) & (!this.repetirPlaylist)) {
                     cont = musicas.size() - 1;
-                    this.clip.stop();
-                    playMusic();
+                    this.pause=true;
+                    this.frame.fecharJanela();
                 } else {
-                    if ((cont < 0) & (!this.repetirPlaylist)) {
-                        cont = musicas.size() - 1;
-                        this.frame.dispose();
-                    } else {
-                        this.clip.stop();
-                        playMusic();
-                    }
+                    this.clip.stop();
                 }
-            }
-        } catch (UnsupportedAudioFileException ex) {
-            Logger.getLogger(ClassPlayer.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (LineUnavailableException ex) {
-            Logger.getLogger(ClassPlayer.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(ClassPlayer.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    public void iniciar() {
-        for (int i = 0; i < this.musicas.size(); i++) {
-            try {
-                playMusic();
-                while (!clip.isRunning()) {
-                    cont++;
-                }
-            } catch (UnsupportedAudioFileException ex) {
-                Logger.getLogger(ClassPlayer.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (LineUnavailableException ex) {
-                Logger.getLogger(ClassPlayer.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IOException ex) {
-                Logger.getLogger(ClassPlayer.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }

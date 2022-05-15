@@ -42,7 +42,13 @@ public class TelaPlayer extends javax.swing.JFrame {
         jLabelMusica.setText(player.getMusicName());
     }
     
+    public void setNomeMusica(String nome){
+        jLabelMusica.setText(nome);
+    }
     
+     public void fecharJanela(){
+        controle.fecharTelaPlayer();
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -190,11 +196,13 @@ public class TelaPlayer extends javax.swing.JFrame {
             jButtonPause.setEnabled(true);
             jButtonAvancar.setEnabled(true);
             jButtonVoltar.setEnabled(true);
-            
-        } catch (UnsupportedAudioFileException | LineUnavailableException | IOException ex) {
+        } catch (UnsupportedAudioFileException ex) {
+            Logger.getLogger(TelaPlayer.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (LineUnavailableException ex) {
+            Logger.getLogger(TelaPlayer.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
             Logger.getLogger(TelaPlayer.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }//GEN-LAST:event_jButtonPlayActionPerformed
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
