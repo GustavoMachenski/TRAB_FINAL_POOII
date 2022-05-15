@@ -9,9 +9,9 @@ public class Conexao {
     public Connection conectar() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            String url = "jdbc:mysql://localhost:8889/poo_spotify";
+            String url = "jdbc:mysql://localhost:3306/poo_spotify";
             String usuario = "root";
-            String senha = "root";
+            String senha = "";
 
             return DriverManager.getConnection(url, usuario, senha);
 

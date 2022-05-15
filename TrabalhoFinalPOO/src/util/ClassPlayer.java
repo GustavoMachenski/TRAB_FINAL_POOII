@@ -25,6 +25,7 @@ public class ClassPlayer {
     boolean repetirPlaylist = false;
     boolean repetirMusica = false;
     boolean pause = false;
+    boolean btRETPAS = false;
     TelaPlayer frame;
 
     public ClassPlayer(List<Musica> musicas, TelaPlayer frame) {
@@ -71,11 +72,12 @@ public class ClassPlayer {
             clipTimePosition = 0;
         }
         this.clip.addLineListener(event -> {
-                if ((event.getType() == LineEvent.Type.STOP) && (!this.pause)) {
-                  this.passMusic();
-                }
-             });
-        this.pause=false;
+            if ((event.getType() == LineEvent.Type.STOP) && (!this.pause) &&(!this.btRETPAS)) {              
+                    this.passMusic();
+            }
+        });
+        this.pause = false;
+        this.btRETPAS = false;
         frame.setNomeMusica(getMusicName());
     }
 
@@ -86,51 +88,78 @@ public class ClassPlayer {
     }
 
     public void passMusic() {
-        if (this.repetirMusica) {
-            this.clip.stop();
-        } else {
-            cont++;
-            if ((cont > musicas.size() - 1) & (this.repetirPlaylist)) {
-                cont = 0;
+        this.btRETPAS = true;
+        try {
+
+            if (this.repetirMusica) {
                 this.clip.stop();
+                playMusic();
             } else {
-                if ((cont > musicas.size() - 1) & (!this.repetirPlaylist)) {
+                cont++;
+                if ((cont > musicas.size() - 1) & (this.repetirPlaylist)) {
                     cont = 0;
-                    this.pause=true;
-                    this.frame.fecharJanela();
-                } else {
                     this.clip.stop();
+                    playMusic();
+                } else {
+                    if ((cont > musicas.size() - 1) & (!this.repetirPlaylist)) {
+                        cont = 0;
+                        this.frame.dispose();
+
+                    } else {
+                        this.clip.stop();
+                        playMusic();
+                    }
                 }
             }
+            
+        } catch (UnsupportedAudioFileException ex) {
+            Logger.getLogger(ClassPlayer.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (LineUnavailableException ex) {
+            Logger.getLogger(ClassPlayer.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(ClassPlayer.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     public void returnMusic() {
-        if (this.repetirMusica) {
-            this.clip.stop();
-        } else {
-            cont--;
-            if ((cont < 0) & (this.repetirPlaylist)) {
-                cont = musicas.size() - 1;
+        this.btRETPAS = true;
+        try {
+            if (this.repetirMusica) {
                 this.clip.stop();
+                playMusic();
             } else {
-                if ((cont < 0) & (!this.repetirPlaylist)) {
+                cont--;
+                if ((cont < 0) & (this.repetirPlaylist)) {
                     cont = musicas.size() - 1;
-                    this.pause=true;
-                    this.frame.fecharJanela();
-                } else {
                     this.clip.stop();
+                    playMusic();
+                } else {
+                    if ((cont < 0) & (!this.repetirPlaylist)) {
+                        cont = musicas.size() - 1;
+                        this.frame.dispose();
+                    } else {
+                        this.clip.stop();
+                        playMusic();
+                    }
                 }
             }
+        } catch (UnsupportedAudioFileException ex) {
+            Logger.getLogger(ClassPlayer.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (LineUnavailableException ex) {
+            Logger.getLogger(ClassPlayer.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(ClassPlayer.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+        
     public void aleatorio() {
+        this.btRETPAS = true;
         this.clip.stop();
         Collections.shuffle(this.musicas);
     }
 
     public void exit() {
+        this.btRETPAS = true;
         this.clip.stop();
     }
 
