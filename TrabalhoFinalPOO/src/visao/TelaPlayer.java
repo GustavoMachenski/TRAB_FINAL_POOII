@@ -38,7 +38,7 @@ public class TelaPlayer extends javax.swing.JFrame {
         jButtonAvancar.setEnabled(false);
         jButtonVoltar.setEnabled(false);
         this.playlist = controle.getPlaylist();
-        player = new ClassPlayer(controle.buscarMusicasPlaylist(this.playlist.getIdPlaylist()));
+        player = new ClassPlayer(controle.buscarMusicasPlaylist(this.playlist.getIdPlaylist()),this);
         jLabelMusica.setText(player.getMusicName());
     }
     
@@ -121,6 +121,13 @@ public class TelaPlayer extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 0, 36)); // NOI18N
         jLabel1.setText("Player");
 
+        jButtonAleatorio.setText("Aleatorio");
+        jButtonAleatorio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAleatorioActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -128,6 +135,10 @@ public class TelaPlayer extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabelMusica, javax.swing.GroupLayout.PREFERRED_SIZE, 672, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jButtonRepPlay)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -140,15 +151,13 @@ public class TelaPlayer extends javax.swing.JFrame {
                         .addComponent(jButtonPause)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButtonAvancar)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jLabelMusica, javax.swing.GroupLayout.PREFERRED_SIZE, 672, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonAleatorio)
+                        .addGap(20, 20, 20))))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(289, 289, 289)
                 .addComponent(jLabel1)
-                .addGap(270, 270, 270))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -164,19 +173,12 @@ public class TelaPlayer extends javax.swing.JFrame {
                     .addComponent(jButtonVoltar)
                     .addComponent(jButtonAvancar)
                     .addComponent(jButtonRepPlay)
-                    .addComponent(jButtonRepMus))
+                    .addComponent(jButtonRepMus)
+                    .addComponent(jButtonAleatorio))
                 .addGap(81, 81, 81))
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 590, 210));
-
-        jButtonAleatorio.setText("Aleatorio");
-        jButtonAleatorio.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAleatorioActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButtonAleatorio, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 120, -1, -1));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 690, 210));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -219,7 +221,17 @@ public class TelaPlayer extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonAvancarActionPerformed
 
     private void jButtonAleatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAleatorioActionPerformed
-        player.aleatorio();
+        try {
+            player.aleatorio();
+            jLabelMusica.setText(player.getMusicName());
+            player.playMusic();
+        } catch (UnsupportedAudioFileException ex) {
+            Logger.getLogger(TelaPlayer.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (LineUnavailableException ex) {
+            Logger.getLogger(TelaPlayer.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(TelaPlayer.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButtonAleatorioActionPerformed
 
     private void jButtonRepPlayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRepPlayActionPerformed
@@ -234,10 +246,10 @@ public class TelaPlayer extends javax.swing.JFrame {
 
     private void jButtonRepMusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRepMusActionPerformed
         if(player.getRepetirMusica()){
-            jButtonRepPlay.setBackground(Color.white);
+            jButtonRepMus.setBackground(Color.white);
             player.setRepetirMusica(false);
         } else {
-            jButtonRepPlay.setBackground(Color.blue);
+            jButtonRepMus.setBackground(Color.blue);
             player.setRepetirMusica(true);
         }
     }//GEN-LAST:event_jButtonRepMusActionPerformed

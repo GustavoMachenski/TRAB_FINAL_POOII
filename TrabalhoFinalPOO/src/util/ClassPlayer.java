@@ -11,43 +11,46 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
+import javax.swing.JFrame;
 import modelo.Musica;
 
-
 public class ClassPlayer {
+
     List<Musica> musicas;
     int cont = 0;
     Clip clip;
     long clipTimePosition = 0;
     boolean repetirPlaylist = false;
     boolean repetirMusica = false;
-    
-    public ClassPlayer(List<Musica> musicas) {
+    JFrame frame;
+
+    public ClassPlayer(List<Musica> musicas, JFrame frame) {
         this.musicas = musicas;
+        this.frame = frame;
     }
-    
-    public String getMusicName(){
+
+    public String getMusicName() {
         return musicas.get(cont).getNome();
     }
-    
-    public void setRepetirPlaylist(Boolean repetir){
+
+    public void setRepetirPlaylist(Boolean repetir) {
         this.repetirPlaylist = repetir;
     }
-    
-    public void setRepetirMusica(Boolean repetir){
+
+    public void setRepetirMusica(Boolean repetir) {
         this.repetirMusica = repetir;
     }
-    
-    public Boolean getRepetirPlaylist(){
+
+    public Boolean getRepetirPlaylist() {
         return this.repetirPlaylist;
     }
-    
-    public Boolean getRepetirMusica(){
-        return this.repetirPlaylist;
+
+    public Boolean getRepetirMusica() {
+        return this.repetirMusica;
     }
-     
-    public void playMusic() throws UnsupportedAudioFileException, LineUnavailableException, IOException{
-        if (clipTimePosition ==0) {
+
+    public void playMusic() throws UnsupportedAudioFileException, LineUnavailableException, IOException {
+        if (clipTimePosition == 0) {
             File musicPath = new File(musicas.get(cont).getCaminho());
             AudioInputStream audioInput = AudioSystem.getAudioInputStream(musicPath);
             Clip clip = AudioSystem.getClip();
@@ -64,22 +67,36 @@ public class ClassPlayer {
             clip.start();
             clipTimePosition = 0;
         }
-        
+
     }
-    public void pauseMusic(){
+
+    public void pauseMusic() {
         clipTimePosition = clip.getMicrosecondPosition();
         clip.stop();
     }
-    
-    public void passMusic(){
+
+    public void passMusic() {
         try {
-            cont++;
-            this.clip.stop();
-            if((cont>musicas.size() - 1) & (this.repetirPlaylist)){
-                cont =0;
+
+            if (this.repetirMusica) {
+                this.clip.stop();
                 playMusic();
             } else {
-                playMusic();
+                cont++;
+                if ((cont > musicas.size() - 1) & (this.repetirPlaylist)) {
+                    cont = 0;
+                    this.clip.stop();
+                    playMusic();
+                } else {
+                    if ((cont > musicas.size() - 1) & (!this.repetirPlaylist)) {
+                        cont = 0;
+                        this.frame.dispose();
+
+                    } else {
+                        this.clip.stop();
+                        playMusic();
+                    }
+                }
             }
         } catch (UnsupportedAudioFileException ex) {
             Logger.getLogger(ClassPlayer.class.getName()).log(Level.SEVERE, null, ex);
@@ -89,16 +106,27 @@ public class ClassPlayer {
             Logger.getLogger(ClassPlayer.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    public void returnMusic(){
+
+    public void returnMusic() {
         try {
-            cont--;
-            this.clip.stop();
-            if((cont < 0) & (this.repetirPlaylist)){
-                cont = musicas.size()-1;
+            if (this.repetirMusica) {
+                this.clip.stop();
                 playMusic();
             } else {
-                playMusic();
+                cont--;
+                if ((cont < 0) & (this.repetirPlaylist)) {
+                    cont = musicas.size() - 1;
+                    this.clip.stop();
+                    playMusic();
+                } else {
+                    if ((cont < 0) & (!this.repetirPlaylist)) {
+                        cont = musicas.size() - 1;
+                        this.frame.dispose();
+                    } else {
+                        this.clip.stop();
+                        playMusic();
+                    }
+                }
             }
         } catch (UnsupportedAudioFileException ex) {
             Logger.getLogger(ClassPlayer.class.getName()).log(Level.SEVERE, null, ex);
@@ -108,12 +136,12 @@ public class ClassPlayer {
             Logger.getLogger(ClassPlayer.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    public void iniciar(){
-        for(int i=0; i<this.musicas.size(); i++){
+
+    public void iniciar() {
+        for (int i = 0; i < this.musicas.size(); i++) {
             try {
                 playMusic();
-                while(!clip.isRunning()){
+                while (!clip.isRunning()) {
                     cont++;
                 }
             } catch (UnsupportedAudioFileException ex) {
@@ -125,18 +153,15 @@ public class ClassPlayer {
             }
         }
     }
-    
-    public void aleatorio(){
+
+    public void aleatorio() {
+        this.clip.stop();
         Collections.shuffle(this.musicas);
     }
-    
-    public void exit(){
+
+    public void exit() {
         this.clip.stop();
     }
-    
-    
-    
-    
-}
 
+}
 

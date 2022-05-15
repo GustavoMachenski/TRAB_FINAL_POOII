@@ -5,7 +5,10 @@
 package visao;
 
 import controle.Controle;
+import exceptions.HashGenerationException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import modelo.Usuario;
 
@@ -260,20 +263,28 @@ public class TelaUsuarios extends javax.swing.JFrame {
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
         if (usuario.getIdUsuario() == 0) {
-            controle.cadastrarUsuario(jTextFieldNome.getText(), jTextFieldEmail.getText(), jTextFieldSenha.getText(), jTextFieldPermissao.getText());
-            jTextFieldNome.setText("");
-            jTextFieldEmail.setText("");
-            jTextFieldSenha.setText("");
-            jTextFieldPermissao.setText("");
-            this.atualizarTabela();
+            try {
+                controle.cadastrarUsuario(jTextFieldNome.getText(), jTextFieldEmail.getText(), jTextFieldSenha.getText(), jTextFieldPermissao.getText());
+                jTextFieldNome.setText("");
+                jTextFieldEmail.setText("");
+                jTextFieldSenha.setText("");
+                jTextFieldPermissao.setText("");
+                this.atualizarTabela();
+            } catch (HashGenerationException ex) {
+                Logger.getLogger(TelaUsuarios.class.getName()).log(Level.SEVERE, null, ex);
+            }
         } else {
-            controle.atualizarUsuario(usuario.getIdUsuario(), jTextFieldNome.getText(), jTextFieldEmail.getText(), jTextFieldSenha.getText(), jTextFieldPermissao.getText());
-            this.usuario = new Usuario();
-            jTextFieldNome.setText("");
-            jTextFieldEmail.setText("");
-            jTextFieldSenha.setText("");
-            jTextFieldPermissao.setText("");
-            this.atualizarTabela();
+            try {
+                controle.atualizarUsuario(usuario.getIdUsuario(), jTextFieldNome.getText(), jTextFieldEmail.getText(), jTextFieldSenha.getText(), jTextFieldPermissao.getText());
+                this.usuario = new Usuario();
+                jTextFieldNome.setText("");
+                jTextFieldEmail.setText("");
+                jTextFieldSenha.setText("");
+                jTextFieldPermissao.setText("");
+                this.atualizarTabela();
+            } catch (HashGenerationException ex) {
+                Logger.getLogger(TelaUsuarios.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 

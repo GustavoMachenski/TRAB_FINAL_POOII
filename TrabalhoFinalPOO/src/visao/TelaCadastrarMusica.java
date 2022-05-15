@@ -310,38 +310,13 @@ public class TelaCadastrarMusica extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBoxArtistasActionPerformed
 
     private void jButtonProcurarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonProcurarActionPerformed
-            /*JFileChooser fc = new JFileChooser();
-            fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
-            fc.showOpenDialog(this);
-            File f = fc.getSelectedFile();
-            jTextFieldProcurar.setText(f.getPath());
-            this.path = f.getPath();
-            *//*
-            InputStream inputStream = null;
-            
-            JFileChooser fc = new JFileChooser();
-            fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
-            fc.showOpenDialog(this);
-            File file = fc.getSelectedFile();
-            inputStream = new FileInputStream(file);
-            jTextFieldProcurar.setText(file.getPath());
-            
-            Upload upload = new Upload();
-            upload.upload("C:\\Users\\Gustavo\\Documents\\NetBeansProjects\\teste\\src\\mp3", file.getName(), inputStream);
-            } catch (FileNotFoundException ex) {
-            Logger.getLogger(TelaCadastrarMusica.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            
-            }
-            */
-            
             JFileChooser fc = new JFileChooser();
             fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
             fc.showOpenDialog(this);
             this.file = fc.getSelectedFile();
             jTextFieldProcurar.setText(file.getPath());
             //this.path = file.getPath();
-            this.path = "/Users/lucasbatista/Documents/GitHub/TRAB_FINAL_POOII/TrabalhoFinalPOO/src/musicas/" + file.getName();
+            this.path = "C:\\Users\\Gustavo\\Documents\\GitHub\\TRAB_FINAL_POOII\\TrabalhoFinalPOO\\src\\musicas/" + file.getName();
             
         
     }//GEN-LAST:event_jButtonProcurarActionPerformed
@@ -365,7 +340,7 @@ public class TelaCadastrarMusica extends javax.swing.JFrame {
         }
         Upload upload = new Upload();
         try {
-            upload.upload("/Users/lucasbatista/Documents/GitHub/TRAB_FINAL_POOII/TrabalhoFinalPOO/src/musicas/", file.getName(), inputStream);
+            upload.upload("C:\\Users\\Gustavo\\Documents\\GitHub\\TRAB_FINAL_POOII\\TrabalhoFinalPOO\\src\\musicas/", file.getName(), inputStream);
         } catch (FileNotFoundException ex) {
             Logger.getLogger(TelaCadastrarMusica.class.getName()).log(Level.SEVERE, null, ex);
         }
