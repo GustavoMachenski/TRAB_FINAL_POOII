@@ -35,6 +35,10 @@ public class GeradorDeTelas {
             frame = new TelaGerenciarPlaylist(controle);
         } else if (nome.equals("telacadastrarplaylist")) {
             frame = new TelaCadastrarPlaylist(controle);
+        } else if (nome.equals("telasobre")) {
+            frame = new TelaSobre(controle);
+        } else if (nome.equals("telausuarios")) {
+            frame = new TelaUsuarios(controle);
         } else {
             frame = new JFrame();
         }

@@ -139,6 +139,17 @@ public class Controle {
         telas.get("telaprincipal").setVisible(false);
     }
     
+    public void abrirTelaSobre() {
+        telas.put("telasobre", fabrica.criarTela("telasobre", this));
+        telas.get("telasobre").setVisible(true);
+    }
+    
+    public void abrirTelaUsuarios() {
+        telas.put("telausuarios", fabrica.criarTela("telausuarios", this));
+        telas.get("telausuarios").setVisible(true);
+        telas.get("telaprincipal").setVisible(false);
+    }
+    
     //fechamento de telas
     public void fecharTelaAutoCadastro() {
         telas.get("telaautocadastro").dispose();
@@ -195,8 +206,12 @@ public class Controle {
     public void fecharTelaCadastrarPlaylist() {
         telas.get("telacadastrarplaylist").dispose();
         telas.get("telaprincipal").setVisible(true);
-        this.id = 0;
-        
+        this.id = 0; 
+    }
+    
+     public void fecharTelaUsuarios(){
+        telas.get("telausuarios").dispose();
+        telas.get("telaprincipal").setVisible(true);
     }
 
     // validações e outros
@@ -364,6 +379,7 @@ public class Controle {
         
     }
 
+    ////////metodos de playlist//////////
     public List<Playlist> consultarPlaylists(int id) {
         try {
             PlaylistDAO playlistDAO = new PlaylistDAO();
@@ -433,8 +449,6 @@ public class Controle {
         }
     }
 
-    
-
     public void removerMusicaDaPlaylist(Musica m, Playlist p) {
         try {
             MusicaDAO musicaDAO = new MusicaDAO();
@@ -443,7 +457,6 @@ public class Controle {
             Logger.getLogger(Controle.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
 
     public List buscarListaDeMusicasExcetoPlaylist(Playlist playlist) {
         try {
@@ -464,6 +477,48 @@ public class Controle {
         } catch (PersistenceException ex) {
             Logger.getLogger(Controle.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    ////////metodos de usuarios//////////
+    public void cadastrarUsuario(String nome, String email, String senha, String permissao) throws HashGenerationException {
+        try {
+            UsuarioDAO usuarioDAO = new UsuarioDAO();
+            Usuario u = new Usuario(nome, email, Digest.hashString(senha,"SHA-256"), permissao);
+            usuarioDAO.inserir(u);
+        } catch (PersistenceException ex) {
+            Logger.getLogger(Controle.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void atualizarUsuario(int idusuario, String nome, String email, String senha, String permissao) throws HashGenerationException {
+        try {
+            UsuarioDAO usuarioDAO = new UsuarioDAO();
+            Usuario u = new Usuario(idusuario, nome, email, Digest.hashString(senha,"SHA-256"), permissao);
+            usuarioDAO.alterar(u);
+        } catch (PersistenceException ex) {
+            Logger.getLogger(Controle.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void excluirUsuario(Usuario u) {
+        try {
+            UsuarioDAO usuarioDAO = new UsuarioDAO();
+            usuarioDAO.excluir(u);
+        } catch (PersistenceException ex) {
+            Logger.getLogger(Controle.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+    
+    public List<Usuario> consultarTodosUsuarios() {
+        try {
+            UsuarioDAO usuarioDAO = new UsuarioDAO();
+            List<Usuario> usuarios = usuarioDAO.consultarTodos();
+            return usuarios;
+        } catch (PersistenceException ex) {
+            JOptionPane.showMessageDialog(null, "Erro", ex.getMessage(), JOptionPane.ERROR_MESSAGE);
+        }
+        return null;
     }
 
 }

@@ -22,6 +22,14 @@ public class Usuario{
         this.senha     = senha;
         this.permissao = permissao;
     }
+    
+    public Usuario(int idUsuario,String nome, String email, String permissao) {
+        this.idUsuario = idUsuario;
+        this.nome      = nome;
+        this.email     = email;
+        this.senha     = "";
+        this.permissao = permissao;
+    }
 
     public Usuario() {
         this.idUsuario  = 0;

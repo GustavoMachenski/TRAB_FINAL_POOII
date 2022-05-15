@@ -6,6 +6,7 @@
 package visao;
 
 import controle.Controle;
+import java.awt.Color;
 import java.io.IOException;
 import java.util.TimerTask;
 import java.util.logging.Level;
@@ -53,14 +54,15 @@ public class TelaPlayer extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jButton6 = new javax.swing.JButton();
+        jButtonRepPlay = new javax.swing.JButton();
         jButtonAvancar = new javax.swing.JButton();
         jButtonPlay = new javax.swing.JButton();
         jButtonPause = new javax.swing.JButton();
         jButtonVoltar = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        jButtonRepMus = new javax.swing.JButton();
         jLabelMusica = new javax.swing.JLabel();
-        jButton8 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jButtonAleatorio = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Player de Musicas");
@@ -71,7 +73,12 @@ public class TelaPlayer extends javax.swing.JFrame {
         });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton6.setText("Rep. play");
+        jButtonRepPlay.setText("Rep. play");
+        jButtonRepPlay.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRepPlayActionPerformed(evt);
+            }
+        });
 
         jButtonAvancar.setText(">>");
         jButtonAvancar.addActionListener(new java.awt.event.ActionListener() {
@@ -101,60 +108,75 @@ public class TelaPlayer extends javax.swing.JFrame {
             }
         });
 
-        jButton4.setText("Rep. Mus");
+        jButtonRepMus.setText("Rep. Mus");
+        jButtonRepMus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRepMusActionPerformed(evt);
+            }
+        });
 
         jLabelMusica.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelMusica.setText("m");
 
-        jButton8.setText("Aleatorio");
+        jLabel1.setFont(new java.awt.Font("Helvetica Neue", 0, 36)); // NOI18N
+        jLabel1.setText("Player");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(jButton6)
-                .addGap(48, 48, 48)
-                .addComponent(jButtonVoltar)
-                .addGap(57, 57, 57)
-                .addComponent(jButton8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
-                .addComponent(jButtonAvancar)
-                .addGap(27, 27, 27)
-                .addComponent(jButton4)
-                .addGap(33, 33, 33))
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButtonRepPlay)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonRepMus)
+                        .addGap(49, 49, 49)
+                        .addComponent(jButtonVoltar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonPlay)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonPause)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonAvancar)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabelMusica, javax.swing.GroupLayout.PREFERRED_SIZE, 672, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabelMusica, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(199, 199, 199))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(229, 229, 229)
-                .addComponent(jButtonPlay)
-                .addGap(33, 33, 33)
-                .addComponent(jButtonPause)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jLabel1)
+                .addGap(270, 270, 270))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(49, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
                 .addComponent(jLabelMusica, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(41, 41, 41)
+                .addGap(31, 31, 31)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonPlay)
-                    .addComponent(jButtonPause))
-                .addGap(8, 8, 8)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton6)
+                    .addComponent(jButtonPause)
+                    .addComponent(jButtonVoltar)
                     .addComponent(jButtonAvancar)
-                    .addComponent(jButton4)
-                    .addComponent(jButton8)
-                    .addComponent(jButtonVoltar))
-                .addGap(46, 46, 46))
+                    .addComponent(jButtonRepPlay)
+                    .addComponent(jButtonRepMus))
+                .addGap(81, 81, 81))
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 590, 210));
+
+        jButtonAleatorio.setText("Aleatorio");
+        jButtonAleatorio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAleatorioActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtonAleatorio, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 120, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -196,19 +218,44 @@ public class TelaPlayer extends javax.swing.JFrame {
         jButtonPlay.setEnabled(false);
     }//GEN-LAST:event_jButtonAvancarActionPerformed
 
+    private void jButtonAleatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAleatorioActionPerformed
+        player.aleatorio();
+    }//GEN-LAST:event_jButtonAleatorioActionPerformed
+
+    private void jButtonRepPlayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRepPlayActionPerformed
+        if(player.getRepetirPlaylist()){
+            jButtonRepPlay.setBackground(Color.white);
+            player.setRepetirPlaylist(false);
+        } else {
+            jButtonRepPlay.setBackground(Color.blue);
+            player.setRepetirPlaylist(true);
+        }
+    }//GEN-LAST:event_jButtonRepPlayActionPerformed
+
+    private void jButtonRepMusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRepMusActionPerformed
+        if(player.getRepetirMusica()){
+            jButtonRepPlay.setBackground(Color.white);
+            player.setRepetirMusica(false);
+        } else {
+            jButtonRepPlay.setBackground(Color.blue);
+            player.setRepetirMusica(true);
+        }
+    }//GEN-LAST:event_jButtonRepMusActionPerformed
+
     /**
      * @param args the command line arguments
      */
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButtonAleatorio;
     private javax.swing.JButton jButtonAvancar;
     private javax.swing.JButton jButtonPause;
     private javax.swing.JButton jButtonPlay;
+    private javax.swing.JButton jButtonRepMus;
+    private javax.swing.JButton jButtonRepPlay;
     private javax.swing.JButton jButtonVoltar;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelMusica;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables

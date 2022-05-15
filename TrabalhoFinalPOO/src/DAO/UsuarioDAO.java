@@ -130,5 +130,27 @@ public class UsuarioDAO implements IUsuarioDAO {
         }
 
     }
-
+    
+    @Override
+    public List<Usuario> consultarTodos() throws PersistenceException {
+       List<Usuario> usuarios = new ArrayList<>();
+        try {
+            Conexao conexao = new Conexao();
+            Connection con = conexao.conectar();
+            PreparedStatement ps = con.prepareStatement("SELECT idusuario, nome, email, permissao FROM usuario");
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Usuario u = new Usuario(rs.getInt("idusuario"),rs.getString("nome"), rs.getString("email"), rs.getString("permissao"));
+                usuarios.add(u);
+            }
+            rs.close();
+            ps.close();
+            con.close();
+            return usuarios;
+        } catch (SQLException ex) {
+            System.out.println(ex);
+            throw new PersistenceException("Banco de dados inacessível");
+            
+        }
+    }
 }

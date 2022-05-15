@@ -1,6 +1,7 @@
 package DAO;
 
 import exceptions.PersistenceException;
+import java.util.List;
 import modelo.Usuario;
 
 public interface IUsuarioDAO {
@@ -14,5 +15,7 @@ public interface IUsuarioDAO {
     public Usuario consultar(int id) throws PersistenceException;
     
     public Usuario consultarLogin(String email, String senha) throws PersistenceException;
+    
+    public List<Usuario> consultarTodos() throws PersistenceException;
     
 }

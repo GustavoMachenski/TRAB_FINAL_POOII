@@ -78,6 +78,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         jPopupMenu1 = new javax.swing.JPopupMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jRadioButtonMenuItem1 = new javax.swing.JRadioButtonMenuItem();
         jPanel2 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -90,11 +92,18 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jLabelImformacao = new javax.swing.JLabel();
         jMenuBar = new javax.swing.JMenuBar();
         jMenuPrincipal = new javax.swing.JMenu();
+        jMenuItemSobre = new javax.swing.JMenuItem();
         jMenuItemSair = new javax.swing.JMenuItem();
         jMenuAlbuns = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItemCadastrarMusica = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItemUsuarios = new javax.swing.JMenuItem();
+
+        jMenuItem1.setText("jMenuItem1");
+
+        jRadioButtonMenuItem1.setSelected(true);
+        jRadioButtonMenuItem1.setText("jRadioButtonMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Player");
@@ -107,9 +116,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel1.setText("Playlists");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(141, 11, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 30, -1, -1));
 
         jButtonTocarMusica.setText("Tocar");
         jButtonTocarMusica.addActionListener(new java.awt.event.ActionListener() {
@@ -117,7 +126,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 jButtonTocarMusicaActionPerformed(evt);
             }
         });
-        jPanel1.add(jButtonTocarMusica, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, -1, -1));
+        jPanel1.add(jButtonTocarMusica, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, -1, -1));
 
         jButtonEditar.setText("Editar");
         jButtonEditar.addActionListener(new java.awt.event.ActionListener() {
@@ -125,7 +134,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 jButtonEditarActionPerformed(evt);
             }
         });
-        jPanel1.add(jButtonEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 320, -1, -1));
+        jPanel1.add(jButtonEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 330, -1, -1));
 
         jTablePlaylists.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -137,7 +146,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTablePlaylists);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 65, 359, 210));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 380, 230));
 
         jButtonExcluir.setText("Excluir");
         jButtonExcluir.addActionListener(new java.awt.event.ActionListener() {
@@ -145,7 +154,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 jButtonExcluirActionPerformed(evt);
             }
         });
-        jPanel1.add(jButtonExcluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 320, -1, -1));
+        jPanel1.add(jButtonExcluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 330, -1, -1));
 
         jButtonCriarPlaylist.setText("Criar Playlist");
         jButtonCriarPlaylist.addActionListener(new java.awt.event.ActionListener() {
@@ -153,10 +162,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 jButtonCriarPlaylistActionPerformed(evt);
             }
         });
-        jPanel1.add(jButtonCriarPlaylist, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 320, -1, -1));
+        jPanel1.add(jButtonCriarPlaylist, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 330, -1, -1));
 
         jLabelImformacao.setText("Imformacao");
-        jPanel1.add(jLabelImformacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 345, 112, -1));
+        jPanel1.add(jLabelImformacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 112, -1));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -166,12 +175,20 @@ public class TelaPrincipal extends javax.swing.JFrame {
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 370, Short.MAX_VALUE)
         );
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 370));
 
         jMenuPrincipal.setText("Menu");
+
+        jMenuItemSobre.setText("Sobre");
+        jMenuItemSobre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemSobreActionPerformed(evt);
+            }
+        });
+        jMenuPrincipal.add(jMenuItemSobre);
 
         jMenuItemSair.setText("Sair");
         jMenuItemSair.addActionListener(new java.awt.event.ActionListener() {
@@ -208,6 +225,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
         jMenuAlbuns.add(jMenuItem3);
+
+        jMenuItemUsuarios.setText("Usuarios");
+        jMenuItemUsuarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemUsuariosActionPerformed(evt);
+            }
+        });
+        jMenuAlbuns.add(jMenuItemUsuarios);
 
         jMenuBar.add(jMenuAlbuns);
 
@@ -270,6 +295,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
         controle.abrirTelaCadastrarPlaylist();
     }//GEN-LAST:event_jButtonCriarPlaylistActionPerformed
 
+    private void jMenuItemSobreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemSobreActionPerformed
+        controle.abrirTelaSobre();
+    }//GEN-LAST:event_jMenuItemSobreActionPerformed
+
+    private void jMenuItemUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemUsuariosActionPerformed
+        controle.abrirTelaUsuarios();
+    }//GEN-LAST:event_jMenuItemUsuariosActionPerformed
+
     @Override
     public void setVisible(boolean b) {
         super.setVisible(b);
@@ -287,14 +320,18 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelImformacao;
     private javax.swing.JMenu jMenuAlbuns;
     private javax.swing.JMenuBar jMenuBar;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItemCadastrarMusica;
     private javax.swing.JMenuItem jMenuItemSair;
+    private javax.swing.JMenuItem jMenuItemSobre;
+    private javax.swing.JMenuItem jMenuItemUsuarios;
     private javax.swing.JMenu jMenuPrincipal;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPopupMenu jPopupMenu1;
+    private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTablePlaylists;
     // End of variables declaration//GEN-END:variables
