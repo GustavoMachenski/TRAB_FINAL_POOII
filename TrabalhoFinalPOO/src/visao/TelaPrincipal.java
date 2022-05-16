@@ -202,6 +202,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenuPrincipal.setForeground(new java.awt.Color(153, 255, 153));
         jMenuPrincipal.setText("Menu");
 
+        jMenuItemSobre.setBackground(new java.awt.Color(0, 51, 0));
         jMenuItemSobre.setForeground(new java.awt.Color(153, 255, 153));
         jMenuItemSobre.setText("Sobre");
         jMenuItemSobre.addActionListener(new java.awt.event.ActionListener() {
@@ -211,6 +212,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         jMenuPrincipal.add(jMenuItemSobre);
 
+        jMenuItemSair.setBackground(new java.awt.Color(0, 51, 0));
         jMenuItemSair.setForeground(new java.awt.Color(153, 255, 153));
         jMenuItemSair.setText("Sair");
         jMenuItemSair.addActionListener(new java.awt.event.ActionListener() {

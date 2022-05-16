@@ -48,6 +48,7 @@ public class GeradorDeTelas {
         frame.setLocationRelativeTo(null);
         frame.setResizable(false);
         frame.setIconImage(Toolkit.getDefaultToolkit().getImage("src/icones/icon.png"));
+        frame.setTitle("Musicfy");
         return frame;
     }
 
