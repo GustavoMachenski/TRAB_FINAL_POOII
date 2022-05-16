@@ -252,20 +252,24 @@ public class TelaPlayer extends javax.swing.JFrame {
 
     private void jButtonRepPlayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRepPlayActionPerformed
         if(player.getRepetirPlaylist()){
-            jButtonRepPlay.setBackground(Color.white);
+            Color col = new Color(204,255,204);
+            jButtonRepPlay.setBackground(col);
             player.setRepetirPlaylist(false);
         } else {
-            jButtonRepPlay.setBackground(Color.blue);
+             Color col = new Color(153,255,153);
+            jButtonRepPlay.setBackground(col);
             player.setRepetirPlaylist(true);
         }
     }//GEN-LAST:event_jButtonRepPlayActionPerformed
 
     private void jButtonRepMusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRepMusActionPerformed
         if(player.getRepetirMusica()){
-            jButtonRepMus.setBackground(Color.white);
+            Color col = new Color(204,255,204);
+            jButtonRepMus.setBackground(col);
             player.setRepetirMusica(false);
         } else {
-            jButtonRepMus.setBackground(Color.blue);
+             Color col = new Color(153,255,153);
+            jButtonRepMus.setBackground(col);
             player.setRepetirMusica(true);
         }
     }//GEN-LAST:event_jButtonRepMusActionPerformed
