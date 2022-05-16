@@ -3,8 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/Gustavo/Documents/GitHub/TRAB_FINAL_POOII/TrabalhoFinalPOO/src/visao/TelaCadastrarPlaylist.java</file>
             <file>file:/C:/Users/Gustavo/Documents/GitHub/TRAB_FINAL_POOII/TrabalhoFinalPOO/src/modelo/Albun.java</file>
             <file>file:/C:/Users/Gustavo/Documents/GitHub/TRAB_FINAL_POOII/TrabalhoFinalPOO/src/visao/TelaAutoCadastro.java</file>
+            <file>file:/C:/Users/Gustavo/Documents/GitHub/TRAB_FINAL_POOII/TrabalhoFinalPOO/src/visao/TelaSobre.java</file>
             <file>file:/C:/Users/Gustavo/Documents/GitHub/TRAB_FINAL_POOII/TrabalhoFinalPOO/src/visao/GeradorDeTelas.java</file>
             <file>file:/C:/Users/Gustavo/Documents/GitHub/TRAB_FINAL_POOII/TrabalhoFinalPOO/src/visao/TelaPlayer.java</file>
             <file>file:/C:/Users/Gustavo/Documents/GitHub/TRAB_FINAL_POOII/TrabalhoFinalPOO/src/modelo/Musica.java</file>
@@ -12,10 +14,14 @@
             <file>file:/C:/Users/Gustavo/Documents/GitHub/TRAB_FINAL_POOII/TrabalhoFinalPOO/src/conecxao/Conexao.java</file>
             <file>file:/C:/Users/Gustavo/Documents/GitHub/TRAB_FINAL_POOII/TrabalhoFinalPOO/src/DAO/MusicaDAO.java</file>
             <file>file:/C:/Users/Gustavo/Documents/GitHub/TRAB_FINAL_POOII/TrabalhoFinalPOO/src/visao/TelaCadastrarMusica.java</file>
+            <file>file:/C:/Users/Gustavo/Documents/GitHub/TRAB_FINAL_POOII/TrabalhoFinalPOO/src/visao/TelaGerenciarAlbuns.java</file>
             <file>file:/C:/Users/Gustavo/Documents/GitHub/TRAB_FINAL_POOII/TrabalhoFinalPOO/src/visao/TelaPrincipal.java</file>
             <file>file:/C:/Users/Gustavo/Documents/GitHub/TRAB_FINAL_POOII/TrabalhoFinalPOO/src/util/ListaDupla.java</file>
             <file>file:/C:/Users/Gustavo/Documents/GitHub/TRAB_FINAL_POOII/TrabalhoFinalPOO/src/controle/Controle.java</file>
             <file>file:/C:/Users/Gustavo/Documents/GitHub/TRAB_FINAL_POOII/TrabalhoFinalPOO/src/util/ClassPlayer.java</file>
+            <file>file:/C:/Users/Gustavo/Documents/GitHub/TRAB_FINAL_POOII/TrabalhoFinalPOO/src/visao/TelaUsuarios.java</file>
+            <file>file:/C:/Users/Gustavo/Documents/GitHub/TRAB_FINAL_POOII/TrabalhoFinalPOO/src/visao/TelaGerenciarPlaylist.java</file>
+            <file>file:/C:/Users/Gustavo/Documents/GitHub/TRAB_FINAL_POOII/TrabalhoFinalPOO/src/visao/TelaGerenciarArtista.java</file>
         </group>
     </open-files>
 </project-private>
