@@ -113,6 +113,10 @@ public class Musica {
         this.albun = albun;
     }
     
+    public String getNomeCompleto() {
+        return nome +" - "+ getArtista().getNome()+" - " + getAlbun().getNome();
+    }
+    
    
     
 

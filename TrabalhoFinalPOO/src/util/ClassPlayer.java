@@ -9,10 +9,12 @@ import java.util.logging.Logger;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineEvent;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JFrame;
 import modelo.Musica;
+import visao.TelaPlayer;
 
 public class ClassPlayer {
 
@@ -22,15 +24,17 @@ public class ClassPlayer {
     long clipTimePosition = 0;
     boolean repetirPlaylist = false;
     boolean repetirMusica = false;
-    JFrame frame;
+    boolean pause = false;
+    boolean btRETPAS = false;
+    TelaPlayer frame;
 
-    public ClassPlayer(List<Musica> musicas, JFrame frame) {
+    public ClassPlayer(List<Musica> musicas, TelaPlayer frame) {
         this.musicas = musicas;
         this.frame = frame;
     }
 
     public String getMusicName() {
-        return musicas.get(cont).getNome();
+        return musicas.get(cont).getNomeCompleto();
     }
 
     public void setRepetirPlaylist(Boolean repetir) {
@@ -67,15 +71,24 @@ public class ClassPlayer {
             clip.start();
             clipTimePosition = 0;
         }
-
+        this.clip.addLineListener(event -> {
+            if ((event.getType() == LineEvent.Type.STOP) && (!this.pause) &&(!this.btRETPAS)) {              
+                    this.passMusic();
+            }
+        });
+        this.pause = false;
+        this.btRETPAS = false;
+        frame.setNomeMusica(getMusicName());
     }
 
     public void pauseMusic() {
         clipTimePosition = clip.getMicrosecondPosition();
+        this.pause = true;
         clip.stop();
     }
 
     public void passMusic() {
+        this.btRETPAS = true;
         try {
 
             if (this.repetirMusica) {
@@ -98,6 +111,7 @@ public class ClassPlayer {
                     }
                 }
             }
+            
         } catch (UnsupportedAudioFileException ex) {
             Logger.getLogger(ClassPlayer.class.getName()).log(Level.SEVERE, null, ex);
         } catch (LineUnavailableException ex) {
@@ -108,6 +122,7 @@ public class ClassPlayer {
     }
 
     public void returnMusic() {
+        this.btRETPAS = true;
         try {
             if (this.repetirMusica) {
                 this.clip.stop();
@@ -136,30 +151,15 @@ public class ClassPlayer {
             Logger.getLogger(ClassPlayer.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
-    public void iniciar() {
-        for (int i = 0; i < this.musicas.size(); i++) {
-            try {
-                playMusic();
-                while (!clip.isRunning()) {
-                    cont++;
-                }
-            } catch (UnsupportedAudioFileException ex) {
-                Logger.getLogger(ClassPlayer.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (LineUnavailableException ex) {
-                Logger.getLogger(ClassPlayer.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IOException ex) {
-                Logger.getLogger(ClassPlayer.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-    }
-
+        
     public void aleatorio() {
+        this.btRETPAS = true;
         this.clip.stop();
         Collections.shuffle(this.musicas);
     }
 
     public void exit() {
+        this.btRETPAS = true;
         this.clip.stop();
     }
 

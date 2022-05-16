@@ -58,28 +58,36 @@ public class TelaAutoCadastro extends javax.swing.JFrame {
         });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabelNome.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jPanel1.setBackground(new java.awt.Color(153, 255, 153));
+
+        jLabelNome.setFont(new java.awt.Font("Yu Gothic UI Semilight", 0, 14)); // NOI18N
         jLabelNome.setText("Nome:");
 
-        jLabelEmail.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabelEmail.setFont(new java.awt.Font("Yu Gothic UI Semilight", 0, 14)); // NOI18N
         jLabelEmail.setText("E-mai:l");
 
-        jLabelSenha.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabelSenha.setFont(new java.awt.Font("Yu Gothic UI Semilight", 0, 14)); // NOI18N
         jLabelSenha.setText("Senha:");
 
-        jTextFieldEmail.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTextFieldEmail.setBackground(new java.awt.Color(240, 240, 240));
+        jTextFieldEmail.setFont(new java.awt.Font("Yu Gothic UI Semilight", 0, 14)); // NOI18N
 
-        jTextFieldNome.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTextFieldNome.setBackground(new java.awt.Color(240, 240, 240));
+        jTextFieldNome.setFont(new java.awt.Font("Yu Gothic UI Semilight", 0, 14)); // NOI18N
         jTextFieldNome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldNomeActionPerformed(evt);
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Yu Gothic UI Semilight", 0, 14)); // NOI18N
         jLabel1.setText("Confirmar senha:");
 
-        jButtonCancelar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jPanel3.setBackground(new java.awt.Color(153, 255, 153));
+
+        jButtonCancelar.setBackground(new java.awt.Color(51, 51, 51));
+        jButtonCancelar.setFont(new java.awt.Font("Yu Gothic UI Semilight", 0, 14)); // NOI18N
+        jButtonCancelar.setForeground(new java.awt.Color(153, 255, 153));
         jButtonCancelar.setText("Cancelar");
         jButtonCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -87,7 +95,9 @@ public class TelaAutoCadastro extends javax.swing.JFrame {
             }
         });
 
-        jButtonComfirmarCadastro.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButtonComfirmarCadastro.setBackground(new java.awt.Color(51, 51, 51));
+        jButtonComfirmarCadastro.setFont(new java.awt.Font("Yu Gothic UI Semilight", 0, 14)); // NOI18N
+        jButtonComfirmarCadastro.setForeground(new java.awt.Color(153, 255, 153));
         jButtonComfirmarCadastro.setText("Comfirmar");
         jButtonComfirmarCadastro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -100,11 +110,11 @@ public class TelaAutoCadastro extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(309, Short.MAX_VALUE)
+                .addContainerGap(340, Short.MAX_VALUE)
                 .addComponent(jButtonComfirmarCadastro)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jButtonCancelar)
-                .addGap(53, 53, 53))
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -116,8 +126,12 @@ public class TelaAutoCadastro extends javax.swing.JFrame {
                 .addContainerGap(24, Short.MAX_VALUE))
         );
 
+        jPasswordFieldComfirmarSenha.setBackground(new java.awt.Color(240, 240, 240));
+        jPasswordFieldComfirmarSenha.setFont(new java.awt.Font("Yu Gothic UI Semilight", 0, 14)); // NOI18N
         jPasswordFieldComfirmarSenha.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
+        jPasswordFieldSenha.setBackground(new java.awt.Color(240, 240, 240));
+        jPasswordFieldSenha.setFont(new java.awt.Font("Yu Gothic UI Semilight", 0, 14)); // NOI18N
         jPasswordFieldSenha.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -167,7 +181,7 @@ public class TelaAutoCadastro extends javax.swing.JFrame {
                 .addComponent(jPasswordFieldSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(8, 8, 8)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPasswordFieldComfirmarSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -175,24 +189,26 @@ public class TelaAutoCadastro extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 590, 310));
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI Historic", 0, 24)); // NOI18N
-        jLabel2.setText("CADASTRE-SE");
+        jPanel2.setBackground(new java.awt.Color(153, 255, 153));
+        jPanel2.setForeground(new java.awt.Color(153, 255, 153));
+
+        jLabel2.setFont(new java.awt.Font("Yu Gothic UI Semilight", 0, 36)); // NOI18N
+        jLabel2.setText("Cadastre-se");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(212, 212, 212)
+                .addGap(200, 200, 200)
                 .addComponent(jLabel2)
-                .addContainerGap(229, Short.MAX_VALUE))
+                .addContainerGap(206, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(jLabel2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 2, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 590, 50));

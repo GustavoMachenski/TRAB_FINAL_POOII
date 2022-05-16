@@ -114,12 +114,16 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanel1.setBackground(new java.awt.Color(153, 255, 153));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Yu Gothic UI Semilight", 0, 36)); // NOI18N
         jLabel1.setText("Playlists");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 30, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 30, -1, -1));
 
+        jButtonTocarMusica.setBackground(new java.awt.Color(51, 51, 51));
+        jButtonTocarMusica.setFont(new java.awt.Font("Yu Gothic UI Semilight", 0, 14)); // NOI18N
+        jButtonTocarMusica.setForeground(new java.awt.Color(153, 255, 153));
         jButtonTocarMusica.setText("Tocar");
         jButtonTocarMusica.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -128,6 +132,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         jPanel1.add(jButtonTocarMusica, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, -1, -1));
 
+        jButtonEditar.setBackground(new java.awt.Color(51, 51, 51));
+        jButtonEditar.setFont(new java.awt.Font("Yu Gothic UI Semilight", 0, 14)); // NOI18N
+        jButtonEditar.setForeground(new java.awt.Color(153, 255, 153));
         jButtonEditar.setText("Editar");
         jButtonEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -136,6 +143,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         jPanel1.add(jButtonEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 330, -1, -1));
 
+        jTablePlaylists.setAutoCreateRowSorter(true);
+        jTablePlaylists.setBackground(new java.awt.Color(240, 240, 240));
+        jTablePlaylists.setFont(new java.awt.Font("Yu Gothic UI Semilight", 0, 14)); // NOI18N
         jTablePlaylists.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -148,6 +158,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 380, 230));
 
+        jButtonExcluir.setBackground(new java.awt.Color(51, 51, 51));
+        jButtonExcluir.setFont(new java.awt.Font("Yu Gothic UI Semilight", 0, 14)); // NOI18N
+        jButtonExcluir.setForeground(new java.awt.Color(153, 255, 153));
         jButtonExcluir.setText("Excluir");
         jButtonExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -156,6 +169,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         jPanel1.add(jButtonExcluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 330, -1, -1));
 
+        jButtonCriarPlaylist.setBackground(new java.awt.Color(51, 51, 51));
+        jButtonCriarPlaylist.setFont(new java.awt.Font("Yu Gothic UI Semilight", 0, 14)); // NOI18N
+        jButtonCriarPlaylist.setForeground(new java.awt.Color(153, 255, 153));
         jButtonCriarPlaylist.setText("Criar Playlist");
         jButtonCriarPlaylist.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -164,6 +180,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         jPanel1.add(jButtonCriarPlaylist, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 330, -1, -1));
 
+        jLabelImformacao.setFont(new java.awt.Font("Yu Gothic UI Semilight", 0, 14)); // NOI18N
         jLabelImformacao.setText("Imformacao");
         jPanel1.add(jLabelImformacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 112, -1));
 
@@ -180,8 +197,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 370));
 
+        jMenuBar.setBackground(new java.awt.Color(0, 51, 0));
+
+        jMenuPrincipal.setForeground(new java.awt.Color(153, 255, 153));
         jMenuPrincipal.setText("Menu");
 
+        jMenuItemSobre.setForeground(new java.awt.Color(153, 255, 153));
         jMenuItemSobre.setText("Sobre");
         jMenuItemSobre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -190,6 +211,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         jMenuPrincipal.add(jMenuItemSobre);
 
+        jMenuItemSair.setForeground(new java.awt.Color(153, 255, 153));
         jMenuItemSair.setText("Sair");
         jMenuItemSair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -200,8 +222,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jMenuBar.add(jMenuPrincipal);
 
+        jMenuAlbuns.setBackground(new java.awt.Color(0, 51, 0));
+        jMenuAlbuns.setForeground(new java.awt.Color(153, 255, 153));
         jMenuAlbuns.setText("Cadastros");
 
+        jMenuItem5.setBackground(new java.awt.Color(0, 51, 0));
+        jMenuItem5.setForeground(new java.awt.Color(153, 255, 153));
         jMenuItem5.setText("Música");
         jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -210,6 +236,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         jMenuAlbuns.add(jMenuItem5);
 
+        jMenuItemCadastrarMusica.setBackground(new java.awt.Color(0, 51, 0));
+        jMenuItemCadastrarMusica.setForeground(new java.awt.Color(153, 255, 153));
         jMenuItemCadastrarMusica.setText("Artista");
         jMenuItemCadastrarMusica.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -218,6 +246,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         jMenuAlbuns.add(jMenuItemCadastrarMusica);
 
+        jMenuItem3.setBackground(new java.awt.Color(0, 51, 0));
+        jMenuItem3.setForeground(new java.awt.Color(153, 255, 153));
         jMenuItem3.setText("Albuns");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -226,6 +256,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         jMenuAlbuns.add(jMenuItem3);
 
+        jMenuItemUsuarios.setBackground(new java.awt.Color(0, 51, 0));
+        jMenuItemUsuarios.setForeground(new java.awt.Color(153, 255, 153));
         jMenuItemUsuarios.setText("Usuarios");
         jMenuItemUsuarios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
