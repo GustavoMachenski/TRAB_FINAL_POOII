@@ -34,7 +34,7 @@ public class ClassPlayer {
     }
 
     public String getMusicName() {
-        return musicas.get(cont).getNome();
+        return musicas.get(cont).getNomeCompleto();
     }
 
     public void setRepetirPlaylist(Boolean repetir) {

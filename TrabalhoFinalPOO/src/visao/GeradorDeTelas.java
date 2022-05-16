@@ -6,6 +6,9 @@
 package visao;
 
 import controle.Controle;
+import java.awt.Color;
+import java.awt.Toolkit;
+import java.net.URL;
 import modelo.Usuario;
 import javax.swing.JFrame;
 
@@ -44,6 +47,7 @@ public class GeradorDeTelas {
         }
         frame.setLocationRelativeTo(null);
         frame.setResizable(false);
+        frame.setIconImage(Toolkit.getDefaultToolkit().getImage("src/icones/icon.png"));
         return frame;
     }
 
