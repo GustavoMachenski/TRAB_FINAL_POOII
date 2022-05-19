@@ -139,9 +139,9 @@ public class TelaLogin extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(10, 106, Short.MAX_VALUE)
+                .addGap(10, 112, Short.MAX_VALUE)
                 .addComponent(jButtonCadastrase)
-                .addGap(119, 119, 119))
+                .addGap(113, 113, 113))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -162,7 +162,7 @@ public class TelaLogin extends javax.swing.JFrame {
                         .addGap(128, 128, 128)
                         .addComponent(jButtonLogar))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(84, 84, 84)
+                        .addGap(89, 89, 89)
                         .addComponent(jLabelCadastrese)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
